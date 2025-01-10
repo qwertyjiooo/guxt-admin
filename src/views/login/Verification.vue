@@ -44,6 +44,10 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
+// 路由
+const router = useRouter()
+
 // 登录选项卡
 const activeName = ref('code')
 // 点击选项卡
@@ -118,10 +122,12 @@ const login = (formEl) => {
     formEl.validate((valid) => {
         if (!valid) return;
         if (activeName.value == 'code') {
-            ElMessage('验证码登录'); return;
+            // 跳转到 首页
+            router.push('/')
         }
         if (activeName.value == 'password') {
-            ElMessage('密码登录'); return;
+            // 跳转到 首页
+            router.push('/')
         }
     })
 }

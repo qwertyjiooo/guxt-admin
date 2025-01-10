@@ -52,8 +52,7 @@ onMounted(() => {
             }
         }
     })
-    console.log(routeList.value);
-
+    // console.log(routeList.value);
     currentRoute.value = route.path
 })
 
