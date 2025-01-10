@@ -32,7 +32,8 @@ import Footer from './footer.vue'
 .login {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(135deg, #1e97f1, #7bc5fd);
+    background: url("@/assets/svg/login-bq.svg") no-repeat center center;
+    // background: linear-gradient(135deg, #1e97f1, #7bc5fd);
     // background: url("@/assets/img/loginBackground.png");
     // background-color: #f1c6d9  ;
     background-size: 100%;

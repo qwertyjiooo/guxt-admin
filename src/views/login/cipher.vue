@@ -7,10 +7,10 @@
             <div class="login-other-item line"></div>
         </div>
         <div class="textBar">
-            <div class="textBar-item" @click="ElMessage.info('功能开发中...')"><img src="@/assets/img/weixin.png" alt="">
+            <div class="textBar-item" @click="ElMessage.info('功能开发中...')"><img class="qq-icon" src="@/assets/svg/weixin.svg" alt="">
             </div>
-            <div class="textBar-item" @click="ElMessage.info('功能开发中...')"><img src="@/assets/img/QQ.png" alt=""></div>
-            <div class="textBar-item" @click="ElMessage.info('功能开发中...')"><img src="@/assets/img/weibo.png" alt="">
+            <div class="textBar-item" @click="ElMessage.info('功能开发中...')"><img class="qq-icon" src="@/assets/svg/QQ.svg" alt=""></div>
+            <div class="textBar-item" @click="ElMessage.info('功能开发中...')"><img class="qq-icon" src="@/assets/svg/weibo.svg" alt="">
             </div>
         </div>
         <div class="bottomText">
@@ -52,10 +52,22 @@ import { ElMessage } from 'element-plus';
     justify-content: center;
     align-items: center;
 
-    img {
-        width: 24px;
-        height: 24px;
-        margin: 30px 30px 0;
+    .textBar-item {
+        transition: all 0.3s ease;
+        
+        &:hover {
+            img {
+                animation: swing 1s ease infinite;
+                transform: scale(1.2);
+            }
+        }
+        
+        img {
+            width: 28px;
+            height: 28px;
+            margin: 30px 30px 0;
+            transition: all 0.3s ease;
+        }
     }
 }
 
@@ -69,4 +81,15 @@ import { ElMessage } from 'element-plus';
     align-items: center;
     justify-content: center;
 }
+
+/* 定义摆动动画 */
+@keyframes swing {
+    0%, 100% { 
+        transform: rotate(-5deg) scale(1.2);
+    }
+    50% { 
+        transform: rotate(5deg) scale(1.2);
+    }
+}
+
 </style>
