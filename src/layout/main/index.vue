@@ -1,10 +1,10 @@
 <template>
     <div class="main-container">
-        <transition name="fade" mode="out-in">
-            <router-view v-slot="{ Component }">
+        <router-view v-slot="{ Component }">
+            <transition name="fade" mode="out-in">
                 <component :is="Component" />
-            </router-view>
-        </transition>
+            </transition>
+        </router-view>
     </div>
 </template>
 
@@ -22,7 +22,7 @@
 /* 1. 经典淡入淡出 */
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.8s ease;
+    transition: opacity 0.2s ease;
     position: absolute;
     width: 100%;
     left: 0;
@@ -37,7 +37,7 @@
 /* 2. 滑动渐变 */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-    transition: all 0.8s ease;
+    transition: all 0.2s ease;
     position: absolute;
     width: 100%;
     left: 0;
@@ -137,10 +137,12 @@
         opacity: 0;
         transform: scale(0.3);
     }
+
     50% {
         opacity: 0.6;
         transform: scale(1.1);
     }
+
     100% {
         opacity: 1;
         transform: scale(1);

@@ -1,4 +1,6 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 import routes from './routes'
 const router = createRouter({
@@ -7,6 +9,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+    NProgress.start()
     const token = localStorage.getItem('token')
     // 判断是否是去 login 页面
     if (to.path === '/login') {
@@ -19,6 +22,9 @@ router.beforeEach((to, from, next) => {
             next('/login')
         }
     }
+})
+router.afterEach(() => {
+    NProgress.done()
 })
 
 export default router

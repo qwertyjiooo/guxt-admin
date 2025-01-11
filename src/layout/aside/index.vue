@@ -61,6 +61,12 @@ const handleClick = (path) => {
     currentRoute.value = path
     router.push(path)
 }
+
+// 监听路由变化
+router.afterEach(() => {
+    currentRoute.value = route.path
+})
+
 </script>
 
 <style lang="less" scoped>
