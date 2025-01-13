@@ -5,6 +5,10 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
 
+// tailwindcss 配置
+import tailwindcss from  'tailwindcss'
+import autoprefixer from 'autoprefixer'
+
 const pathSrc = resolve(__dirname, './src')
 export default defineConfig({
   plugins: [
@@ -30,6 +34,9 @@ export default defineConfig({
   },
   // css预处理器配置
   css: {
+    postcss: {
+      plugins: [tailwindcss, autoprefixer]
+    },
     preprocessorOptions: {
       less: {
         // 支持内联 JavaScript
