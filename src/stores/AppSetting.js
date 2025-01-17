@@ -3,9 +3,8 @@ import dbUtils from '@/utils/util.strotage.js'
 import Color from "color";
 import setting from '@/setting.js'
 
-export const useAppSettingStore = defineStore('appSetting',()=> {
+export const useAppSettingStore = defineStore('appSetting', () => {
     // state
-    
     // 主题颜色
     const appThemeColor = ref(dbUtils.get('appThemeColor') || setting.theme.color)
     // // 暗黑主题 // true 明亮 false 暗黑
@@ -26,8 +25,12 @@ export const useAppSettingStore = defineStore('appSetting',()=> {
     }
     // 切换主题颜色
     const toggleThemeColor = (color) => {
+        // 判断 color 是否为空 如果为空 则默认为 setting.theme.color
+        if (!color) {
+            color = setting.theme.color
+        }
         dbUtils.set('appThemeColor', color)
-        // appThemeColor.value = color
+        appThemeColor.value = color
         let newColor = color
         const rootStyle = document.documentElement.style
         rootStyle.setProperty('--el-color-primary', newColor)
@@ -37,6 +40,16 @@ export const useAppSettingStore = defineStore('appSetting',()=> {
                 `--el-color-primary-light-${i}`,
                 `${Color(newColor).alpha(1 - i * 0.1)}`
             );
+        }
+    };
+    // 初始化暗色主题
+    const initThemeDark = () => {
+        if (!appThemeDark.value) {
+            dbUtils.set('appThemeDark', 'dark')
+            document.documentElement.classList.add("dark");
+        } else {
+            dbUtils.set('appThemeDark', 'light')
+            document.documentElement.classList.remove("dark");
         }
     };
     // 暗色主题
@@ -55,20 +68,12 @@ export const useAppSettingStore = defineStore('appSetting',()=> {
             rootStyle.setProperty(`--el-menu-text-color`, '#606060');
         }
     };
-    // 初始化暗色主题
-    const initThemeDark = () => {
-        if (!appThemeDark.value) {
-            dbUtils.set('appThemeDark', 'dark')
-            document.documentElement.classList.add("dark");
-        } else {
-            dbUtils.set('appThemeDark', 'light')
-            document.documentElement.classList.remove("dark");
-        }
-    };
+
     initThemeDark();
     initThemeColor();
     return {
         toggleThemeColor,
+        appThemeColor,
         initThemeColor,
         appThemeDark,
         toggleThemeDark,

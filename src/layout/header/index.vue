@@ -2,6 +2,8 @@
     <el-header class="header">
         <!-- 面包屑 -->
         <breadcrumb class="flex-1 breadcrumb"></breadcrumb>
+        <!-- 全屏 -->
+        <FullScreen></FullScreen>
         <!-- 系统设置 -->
         <setup></setup>
         <!-- 信息设置 -->
@@ -13,6 +15,7 @@
 import breadcrumb from './components/breadcrumb.vue'
 import setup from './components/setup.vue'
 import profilePicture from './components/profilePicture.vue'
+import FullScreen from './components/FullScreen.vue'
 
 </script>
 

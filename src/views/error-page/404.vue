@@ -23,24 +23,25 @@ const goBack = () => {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #1e97f1, #7bc5fd);
+    // background: linear-gradient(135deg, #1e97f1, #7bc5fd);
     /* 渐变背景 */
-    font-family: 'Arial', sans-serif;
+    // font-family: 'Arial', sans-serif;
 }
 
 .not-found-content {
     text-align: center;
-    background: rgba(255, 255, 255, 0.8);
+    // background: rgba(255, 255, 255, 0.8);
     /* 背景透明 */
     border-radius: 15px;
     padding: 40px 60px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
 .not-found-title {
     font-size: 6rem;
     font-weight: 700;
-    color: #333;
+    // color: #333;
+    color: var(--el-color-primary);
     margin-bottom: 20px;
     animation: bounce 1s infinite alternate;
     /* 动画效果 */
@@ -48,7 +49,8 @@ const goBack = () => {
 
 .not-found-message {
     font-size: 1.2rem;
-    color: #555;
+    // color: #555;
+    color: var(--el-color-primary);
     margin-bottom: 30px;
 }
 
@@ -61,7 +63,7 @@ const goBack = () => {
     text-decoration: none;
     color: #fff;
     padding: 12px 30px;
-    background-color: #1e97f1;
+    background-color: var(--el-color-primary);
     border-radius: 30px;
     transition: background-color 0.3s ease;
 }

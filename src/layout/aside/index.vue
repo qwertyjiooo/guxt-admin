@@ -1,100 +1,24 @@
 <template>
-    <el-menu class="menu-vertical-demo" :default-active="currentRoute">
-        <div class="logo" style="">
-            <img src="@/assets/img/geZhiLogo.png" alt="">
-            <span>{{ setting.websiteInfo.name }}</span>
-        </div>
-        <div class="menu-list">
-            <div v-for="(item, index) in routeList" :key="index">
-                <!-- 一级路由的显示 -->
-                <el-menu-item v-if="!item.children" :index="item.path" @click="handleClick(item.path)">
-                    <span>{{ item.meta.title }}</span>
-                </el-menu-item>
-                <!-- 二级路由的显示 -->
-                <el-sub-menu :index="item.path" v-else>
-                    <template #title>
-                        <span>{{ item.meta.title }}</span>
-                    </template>
-                    <div v-for="(child, index) in item.children" :key="index">
-                        <el-menu-item :index="child.path" @click="handleClick(child.path)">{{ child.meta.title
-                            }}</el-menu-item>
-                    </div>
-                </el-sub-menu>
-            </div>
-        </div>
-    </el-menu>
+  <div class="container">
+    <logo />
+    <menu-list />
+    <colorPicker class="colorPicker" />
+  </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router'
-import routes from '@/router/routes'
-import setting from '@/setting'
-// 获取路由实例
-const router = useRouter()
-const route = useRoute()
-// 获取到的路由列表
-const routeList = ref([])
-// 获取当前路由
-const currentRoute = ref('')
-
-onMounted(() => {
-    // 遍历路由列表
-    routes.forEach(item => {
-        // 判断 meta-> isShow 是否为 true
-        if (item.meta.isShow) {
-            // 判断 是否是 一级路由
-            if (item.meta.isOnlyOneMenu) {
-                // 添加子级路由
-                routeList.value.push(...item.children)
-            } else {
-                // 添加一级路由
-                routeList.value.push(item)
-            }
-        }
-    })
-    // console.log(routeList.value);
-    currentRoute.value = route.path
-})
-
-// 点击菜单项
-const handleClick = (path) => {
-    currentRoute.value = path
-    router.push(path)
-}
-
-// 监听路由变化
-router.afterEach(() => {
-    currentRoute.value = route.path
-})
-
+import logo from "./components/logo.vue";
+import menuList from "./components/menuList.vue";
+import colorPicker from "./components/colorPicker.vue";
 </script>
 
 <style lang="less" scoped>
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 60px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: var(--header-menu-background);
-    color: #fff;
-    border-bottom: 1px solid var(--main-border-color);
-    img {
-        width: 30px;
-        height: 30px;
-        margin-right: 10px;
-    }
-}
-
-.menu-list {
-    height: calc(100vh - 60px);
-    overflow: auto;
-}
-.el-menu-item {
-    span {
-        font-size: 16px;
+.container {
+    position: relative;
+    .colorPicker {
+        position: absolute;
+        bottom: 0;
+        // right: 50%;
     }
 }
 </style>

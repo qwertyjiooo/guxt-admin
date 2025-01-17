@@ -1,8 +1,15 @@
 <template>
-  <div class="home">home</div>
+  <div class="home">
+    <!-- {{ level }},
+    {{ chargingTime }},
+    {{ dischargingTime }},
+    {{ charging }} -->
+  </div>
 </template>
 
 <script setup>
+// import { useBattery } from '@vueuse/core'
+// const { charging, chargingTime, dischargingTime, level } = useBattery()
 </script>
 
 <style lang="less" scoped>
