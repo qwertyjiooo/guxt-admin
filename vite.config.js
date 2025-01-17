@@ -1,5 +1,9 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+// Element自动导入 图标
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+// element-plus 自动导入配置
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -17,13 +21,29 @@ export default defineConfig({
     AutoImport({
       // imports 的作用是配置需要自动导入的 API，这里配置了 vue、vue-router、pinia 三个 API
       imports: ['vue', 'vue-router', 'pinia'], // 自动导入的 API
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+        ElementPlusResolver(),
+        // 自动导入图标
+        IconsResolver({
+          prefix: 'Icon',
+        })
+      ],
     }),
     // 按需导入 ElementPlus 组件
     Components({
       dts: true, // 自动生成 .d.ts 类型文件
       dirs: ["src/components", "src/**/components"], // 指定组件目录,按需导入组件
-      resolvers: [ElementPlusResolver({ importStyle: 'sass' })], // ElementPlus按需加载
+      resolvers: [
+        ElementPlusResolver({ importStyle: 'sass' }),
+        // 自动导入图标
+        IconsResolver({
+          enabledCollections: ['ep']
+        })
+      ], // ElementPlus按需加载
+    }),
+    // 自动导入图标
+    Icons({
+      autoInstall: true,
     })
   ],
   // 配置别名
@@ -44,7 +64,7 @@ export default defineConfig({
       },
       scss: {
         // 自动导入定制化样式文件进行样式覆盖
-        additionalData: `@use "@/style/element/index.scss" as *;`,
+        // additionalData: `@use "@/style/element/index.scss" as *;`,
         javascriptEnabled: true,
       }
     },

@@ -180,7 +180,7 @@ const login = (formEl) => {
 }
 
 .el-input:focus-within {
-    border-bottom: 1px solid #409EFF;
+    border-bottom: 1px solid var(--el-color-primary);
     /* 聚焦时修改横线颜色 */
 }
 

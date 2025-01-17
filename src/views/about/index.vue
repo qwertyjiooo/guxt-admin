@@ -9,6 +9,5 @@
 .about {
   width: 100%;
   height: 100%;
-  background-color: rgb(233, 255, 233);
 }
 </style>

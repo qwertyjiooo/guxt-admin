@@ -2,7 +2,7 @@
     <el-menu class="menu-vertical-demo" :default-active="currentRoute">
         <div class="logo" style="">
             <img src="@/assets/img/geZhiLogo.png" alt="">
-            <span>格致编辑后台</span>
+            <span>{{ setting.websiteInfo.name }}</span>
         </div>
         <div class="menu-list">
             <div v-for="(item, index) in routeList" :key="index">
@@ -29,6 +29,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router'
 import routes from '@/router/routes'
+import setting from '@/setting'
 // 获取路由实例
 const router = useRouter()
 const route = useRoute()
@@ -77,9 +78,9 @@ router.afterEach(() => {
     height: 60px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #1e97f1;
+    background-color: var(--header-menu-background);
     color: #fff;
-
+    border-bottom: 1px solid var(--main-border-color);
     img {
         width: 30px;
         height: 30px;

@@ -1,12 +1,12 @@
 <template>
     <div class="common-layout">
         <el-container>
-            <el-aside width="200px" style="height: 100vh;background-color: pink;">
+            <el-aside width="200px" style="height: 100vh;">
                 <Aside />
             </el-aside>
             <el-container style="flex-direction: column;">
                 <Header />
-                <el-main>
+                <el-main class="main-content">
                     <Main />
                 </el-main>
             </el-container>
@@ -22,5 +22,8 @@ import Main from './main/index.vue'
 .common-layout {
     width: 100vw;
     height: 100vh;
+}
+.main-content {
+    background-color: var(--main-background);
 }
 </style>

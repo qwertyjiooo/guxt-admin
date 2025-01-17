@@ -1,0 +1,31 @@
+/** 全局SCSS变量 */
+
+:root {
+  --main-background: #ffffff; // 主背景色
+  --main-border-color: #e7e7e7; // 主边框颜色
+  --menu-background: #f8f8f8; // 菜单背景色
+  --menu-text: #bfcbd9; // 菜单文字颜色
+  --menu-active-text: var(--el-menu-active-color); // 菜单激活文字颜色
+  --menu-hover: #263445; // 菜单悬停背景色
+  --sidebar-logo-background: #2d3748; // 侧边栏 Logo 背景色
+  --el-menu-item-height:45px; // 菜单项高度
+  --header-menu-background: #1e97f1; // 头部菜单背景色
+}
+
+/** 暗黑主题 */
+html.dark {
+  --main-background: var(--el-bg-color-overlay);
+  --main-border-color: var(--el-border-color-dark);
+  --menu-background: var(--el-bg-color-overlay);
+  --header-menu-background: var(--el-bg-color-overlay);
+  --menu-text: #fff;
+  --menu-active-text: var(--el-menu-active-color);
+  --menu-hover: rgb(0 0 0 / 20%);
+  --sidebar-logo-background: rgb(0 0 0 / 20%);
+}
+
+$menu-background: var(--menu-background); // 菜单背景色
+$menu-text: var(--menu-text); // 菜单文字颜色
+$menu-active-text: var(--menu-active-text); // 菜单激活文字颜色
+$menu-hover: var(--menu-hover); // 菜单悬停背景色
+$sidebar-logo-background: var(--sidebar-logo-background); // 侧边栏 Logo 背景色

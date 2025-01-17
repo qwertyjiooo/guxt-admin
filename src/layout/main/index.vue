@@ -17,6 +17,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    background-color: var(--main-background);
 }
 
 /* 1. 经典淡入淡出 */

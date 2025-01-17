@@ -1,2 +1,4 @@
-@import './reset/style.css';
+@import './reset/style.scss';
 @import './tailwind/index.css';
+@import './scss/inde.scss';
+@import './scss/_variables.scss';
