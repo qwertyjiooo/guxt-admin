@@ -1,8 +1,8 @@
 <template>
     <div class="login">
-        <div style="display: flex; justify-content: center; align-items: center; padding: 60px 0 40px 0;">
-            <img src="@/assets/img/geZhiLogo.png" alt="" style="width: 80px;">
-            <div style="font-size: 32px;padding-left: 20px;">格致</div>
+        <div style="display: flex; justify-content: center; align-items: center; padding: 40px 0 20px 0;">
+            <img src="@/assets/img/geZhiLogo.png" alt="" style="width: 60px;">
+            <div style="font-size: 28px;padding-left: 20px;color: #fff;">格致</div>
         </div>
         <div class="login-title">
             <div style="flex: 7;">
@@ -33,11 +33,8 @@ import Footer from './footer.vue'
     width: 100vw;
     height: 100vh;
     background: url("@/assets/svg/login-bq.svg") no-repeat center center;
-    // background: linear-gradient(135deg, #1e97f1, #7bc5fd);
-    // background: url("@/assets/img/loginBackground.png");
-    // background-color: #f1c6d9  ;
-    background-size: 100%;
-    background-position: left 0px;
+    background-size: cover;
+    background-position: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,7 +42,7 @@ import Footer from './footer.vue'
     overflow: auto;
 
     .login-title {
-        background-color: #fff;
+        background-color: var(--menu-background);
         width: 750px;
         // height: 500px;
         border-radius: 5px;

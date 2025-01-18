@@ -35,7 +35,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-right: 1px solid #f5f5f5;
+    border-right: 1px solid var(--main-border-color);
 
     .title {
         font-size: 16px;
@@ -45,7 +45,7 @@
 
     .desc {
         font-size: 14px;
-        color: #373A40;
+        color: #8c8f94;
         padding: 8px 0 24px 0;
     }
 
@@ -84,9 +84,9 @@
         margin-top: 24px;
         border: 1px solid #ccc;
         padding: 8px 8px;
-        border-radius: 15px;
+        border-radius: 999px;
         cursor: pointer;
-        color: #373A40;
+        color: #8c8f94;
         font-size: 14px;
         box-sizing: border-box;
         // 去除a标签默认的下划线

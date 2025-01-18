@@ -1,7 +1,7 @@
 <template>
     <div class="common-layout">
-        <el-container>
-            <el-aside width="200px" style="height: 100vh;">
+        <el-container style="display: flex;">
+            <el-aside width="auto" style="height: 100vh;">
                 <Aside />
             </el-aside>
             <el-container style="flex-direction: column;">

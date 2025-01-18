@@ -68,7 +68,6 @@ export const useAppSettingStore = defineStore('appSetting', () => {
             rootStyle.setProperty(`--el-menu-text-color`, '#606060');
         }
     };
-
     initThemeDark();
     initThemeColor();
     return {

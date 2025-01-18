@@ -1,35 +1,36 @@
 <template>
-  <el-menu class="menu-vertical-demo" :default-active="currentRoute">
+  <el-menu class="menu-vertical-demo" :collapse="isCollapse" :default-active="currentRoute">
+    <logo />
     <div class="menu-list">
       <div v-for="(item, index) in routeList" :key="index">
         <!-- 一级路由的显示 -->
-        <el-menu-item
-          v-if="!item.children"
-          :index="item.path"
-          @click="handleClick(item.path)"
-        >
+        <el-menu-item v-if="!item.children" :index="item.path" @click="handleClick(item.path)">
+          <el-icon>
+            <location />
+          </el-icon>
           <span>{{ item.meta.title }}</span>
         </el-menu-item>
         <!-- 二级路由的显示 -->
         <el-sub-menu :index="item.path" v-else>
           <template #title>
+            <el-icon><location /></el-icon>
             <span>{{ item.meta.title }}</span>
           </template>
           <div v-for="(child, index) in item.children" :key="index">
-            <el-menu-item
-              :index="child.path"
-              @click="handleClick(child.path)"
-              >{{ child.meta.title }}</el-menu-item
-            >
+            <el-menu-item :index="child.path" @click="handleClick(child.path)">{{ child.meta.title }}</el-menu-item>
           </div>
         </el-sub-menu>
       </div>
     </div>
+    <colorPicker class="colorPicker" />
   </el-menu>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
+import logo from "./logo.vue";
+import colorPicker from "./colorPicker.vue";
+import { Location } from "@element-plus/icons-vue";
 import { useRouter, useRoute } from "vue-router";
 import routes from "@/router/routes";
 // 获取路由实例
@@ -39,7 +40,8 @@ const route = useRoute();
 const routeList = ref([]);
 // 获取当前路由
 const currentRoute = ref("");
-
+// 获取侧边栏是否折叠
+const isCollapse = ref(false);
 onMounted(() => {
   // 遍历路由列表
   routes.forEach((item) => {
@@ -73,15 +75,16 @@ router.afterEach(() => {
 
 <style lang="less" scoped>
 .menu-list {
-  height: calc(100vh - 60px);
-  overflow: auto;
+  height: calc(100vh - 100px);
+  overflow-x: hidden;
+  overflow-y: auto;
   padding-bottom: 40px;
   background-color: var(--menu-background);
 }
+
 .el-menu-item {
   span {
     font-size: 16px;
   }
 }
-
 </style>

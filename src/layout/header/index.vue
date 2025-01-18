@@ -1,5 +1,7 @@
 <template>
     <el-header class="header">
+        <!-- 折叠按钮 -->
+        <fold></fold>
         <!-- 面包屑 -->
         <breadcrumb class="flex-1 breadcrumb"></breadcrumb>
         <!-- 全屏 -->
@@ -16,7 +18,7 @@ import breadcrumb from './components/breadcrumb.vue'
 import setup from './components/setup.vue'
 import profilePicture from './components/profilePicture.vue'
 import FullScreen from './components/FullScreen.vue'
-
+import fold from './components/fold.vue'
 </script>
 
 <style lang='less' scoped>

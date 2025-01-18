@@ -1,13 +1,8 @@
 <template>
-  <div class="flex items-center justify-center w-full h-10 color-picker" title="主题颜色">
-    <el-color-picker
-      size="default"
-      @change="changeThemeColor"
-      v-model="appStore.appThemeColor"
-      show-alpha
-      :predefine="predefineColors"
-    />
-    <div class="pl-2 text-gray-500">主题颜色</div>
+  <div class="color-picker" title="主题颜色">
+    <el-color-picker size="default" @change="changeThemeColor" v-model="appStore.appThemeColor" show-alpha
+      :predefine="predefineColors" />
+    <div class="pl-4 text-gray-500">主题颜色</div>
   </div>
 </template>
 
@@ -38,7 +33,14 @@ const changeThemeColor = (val) => {
 
 <style lang="less" scoped>
 .color-picker {
-    background-color: var(--menu-background);
-    border-right: var(--main-border-color) 1px solid;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 17px;
+  overflow: hidden;
+  // 文字不换行
+  white-space: nowrap;
+  background-color: var(--menu-background);
+  // border-right: var(--main-border-color) 1px solid;
 }
 </style>

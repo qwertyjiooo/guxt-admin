@@ -10,23 +10,19 @@
       </template>
       <section>
         <h4>系统主题</h4>
-        <el-switch
-          size="default"
-          v-model="useAppStore.appThemeDark"
-          @change="changeThemeType"
-          :active-action-icon="Sunny"
-          :inactive-action-icon="Moon"
-        />
+        <el-switch size="default" v-model="useAppStore.appThemeDark" @change="changeThemeType"
+          :active-action-icon="Sunny" :inactive-action-icon="Moon" />
         <h4>主题颜色</h4>
         <div class="theme-color-list">
-          <span
-            v-for="(item, index) in predefineColors"
-            :key="index"
-            :title="item"
-            @click="changeThemeColor(item)"
-            :style="{ backgroundColor: item }"
-          ></span>
+          <span v-for="(item, index) in predefineColors" :key="index" :title="item" @click="changeThemeColor(item)"
+            :style="{ backgroundColor: item }"></span>
         </div>
+        <el-button class="mt-2" @click="debouncedResetSetting">
+          <el-icon>
+            <Refresh />
+          </el-icon>
+          重置
+        </el-button>
         <!-- <h4>自定义主题颜色</h4>
         <el-color-picker v-model="useAppStore.appThemeColor" size="default" @change="changeThemeColor" show-alpha /> -->
       </section>
@@ -37,7 +33,8 @@
 <script setup>
 import { ref } from "vue";
 import { useAppSettingStore } from "@/stores/AppSetting.js";
-import { Sunny, Moon } from "@element-plus/icons-vue";
+import { Sunny, Moon, Refresh } from "@element-plus/icons-vue";
+import { useDebounceFn } from "@vueuse/core";
 const predefineColors = ref([
   "rgba(63, 81, 181, 1)",
   "rgba(255, 69, 0, 1)",
@@ -55,9 +52,9 @@ const predefineColors = ref([
   "hsla(209, 100%, 56%, 0.73)",
   "#c7158577",
 ]);
-
 // 切换主题颜色
 const useAppStore = useAppSettingStore();
+// 预定义主题颜色
 const changeThemeColor = (color) => {
   useAppStore.toggleThemeColor(color);
 };
@@ -65,6 +62,13 @@ const changeThemeColor = (color) => {
 const changeThemeType = (val) => {
   useAppStore.toggleThemeDark(val);
 };
+// 重置设置 - 防抖
+const debouncedResetSetting = useDebounceFn(() => {
+  useAppStore.toggleThemeColor('');
+  useAppStore.toggleThemeDark(true);
+  console.log('重置设置');
+}, 500);
+
 </script>
 
 <style lang="less" scoped>
