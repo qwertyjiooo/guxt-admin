@@ -36,7 +36,11 @@
     align-items: center;
     justify-content: center;
     border-right: 1px solid var(--main-border-color);
-
+    // 禁止复制文字
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     .title {
         font-size: 16px;
         font-weight: 700;
