@@ -1,15 +1,15 @@
 # gezhi_pc
 
 ## 项目分析
--vue@3.5.12
--vue-router@4
--element-plus@2.9.2
--pinia
--axios
--less
--sass
--tailwindcss
--vite
+- vue@3.5.12
+- vue-router@4
+- element-plus@2.9.2
+- pinia
+- axios
+- less
+- sass
+- tailwindcss
+- vite
 
 ## 技术文档
 - vue: https://cn.vuejs.org/
