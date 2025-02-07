@@ -4,8 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "npx rimraf dist && vite build",
+    "dev": "vite --mode development",
+    "start": "vite --mode production",
+    "build": "npx rimraf dist && vite build --mode production",
+    "build:env": "npx rimraf dist && vite build --mode development",
     "preview": "npx rimraf dist && vite build && vite preview"
   },
   "dependencies": {
