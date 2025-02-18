@@ -69,7 +69,7 @@ const goBack = () => {
 }
 
 .not-found-link:hover {
-    background-color: #7bc5fd;
+    background-color: var(--el-button-hover-bg-color);
 }
 
 /* Bouncing animation */
