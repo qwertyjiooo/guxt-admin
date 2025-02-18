@@ -5,7 +5,8 @@
       <div class="menu-list">
         <div v-for="(item, index) in routeList" :key="index">
           <!-- 一级路由的显示 -->
-          <el-menu-item v-if="!item.children" :index="item.path" @click="handleClick(item.path)">
+          <el-menu-item :class="{ 'menu-item-active': currentRoute === item.path }" v-if="!item.children"
+            :index="item.path" @click="handleClick(item.path)">
             <el-icon>
               <location />
             </el-icon>
@@ -22,7 +23,8 @@
               <span>{{ item.meta.title }}</span>
             </template>
             <div v-for="(child, index) in item.children" :key="index">
-              <el-menu-item :index="child.path" @click="handleClick(child.path)">{{ child.meta.title }}</el-menu-item>
+              <el-menu-item :index="child.path" @click="handleClick(child.path)"
+                :class="{ 'menu-item-active': currentRoute === child.path }">{{ child.meta.title }}</el-menu-item>
             </div>
           </el-sub-menu>
         </div>
@@ -87,6 +89,7 @@ router.afterEach(() => {
 :deep(.el-aside) {
   width: auto !important;
 }
+
 .container {
   overflow: hidden;
 }
@@ -103,5 +106,10 @@ router.afterEach(() => {
   span {
     font-size: 16px;
   }
+}
+
+.menu-item-active {
+  border-right: 3px solid var(--menu-active-text);
+  background-color: var(--el-menu-hover-bg-color);
 }
 </style>

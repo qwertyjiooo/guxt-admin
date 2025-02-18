@@ -24,7 +24,7 @@ import fold from './components/fold.vue'
 <style lang='less' scoped>
 .header {
     background-color: var(--header-menu-background);
-    width: 100%;
+    width: auto;
     display: flex;
     position: relative;
     box-sizing: border-box;
