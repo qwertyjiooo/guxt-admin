@@ -23,7 +23,7 @@ import fold from './components/fold.vue'
 
 <style lang='less' scoped>
 .header {
-    background-color: var(--header-menu-background);
+    background-color: var(--menu-active-text);
     width: auto;
     display: flex;
     position: relative;

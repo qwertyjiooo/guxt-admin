@@ -1,7 +1,7 @@
 export default {
     // 网站信息
     websiteInfo: {
-        name: '格致编辑后台',
+        name: '编辑后台',
         version: '1.0.0',
         desc: '管理平台',
         // logo仅支持在线地址

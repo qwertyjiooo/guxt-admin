@@ -5,14 +5,23 @@ import anyRoute from './modules/anyRoute'
 import aboutRouter from './modules/about'
 
 const routes = [
-    ...homeRouter,
+    {
+        path: '/',
+        name: 'home',
+        component: () => import('@/layout/index.vue'),
+        redirect: '/home',
+        meta: {
+            title: '',
+            isShow: true, // 是否显示在菜单栏
+        },
+        children: [
+            ...homeRouter,
+            ...aboutRouter,
+        ]
+    },
     ...loginRouter,
-    ...aboutRouter,
-
     ...notFoundRouter,
-    ...anyRoute
+    ...anyRoute,
 ]
 
 export default routes
-
-// 路由懒加载 采用 () => import('/…') 来导入, 这样可以按需加载路由组件, 加快首屏加载速度

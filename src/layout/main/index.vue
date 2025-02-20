@@ -18,6 +18,7 @@
     height: 100%;
     overflow: hidden;
     background-color: var(--main-background);
+    overflow: visible;
 }
 
 .fade-enter-active,
