@@ -1,0 +1,13 @@
+// 通用的全局的样式
+
+.shadow_bg_3 {
+    // 背景阴影
+    transition: box-shadow 0.3s ease;
+    overflow: visible;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shadow_bg_3:hover {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+}

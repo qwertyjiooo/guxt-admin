@@ -1,4 +1,10 @@
+/* 全局默认样式 */
 @import './reset/style.scss';
+/* 全局样式 */
+@import './reset//msin.scss';
+/* tailwind配置样式 */
 @import './tailwind/index.css';
+/* 默认主题样式 */
 @import './scss/inde.scss';
+/* 主题样式 */
 @import './scss/_variables.scss';

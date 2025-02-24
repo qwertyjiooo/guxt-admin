@@ -1,74 +1,37 @@
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
-import * as echarts from "echarts/core";
-
-// 引入内置组件，组件后缀都为Component
+import * as echarts from 'echarts/core';
+// 引入柱状图图表，图表后缀都为 Chart
+import { BarChart, LineChart, PieChart } from 'echarts/charts';
+// 引入标题，提示框，直角坐标系，数据集，内置数据转换器组件，组件后缀都为 Component
 import {
     TitleComponent,
     TooltipComponent,
-    GridComponent,
-    PolarComponent,
-    AriaComponent,
-    ParallelComponent,
-    LegendComponent,
-    RadarComponent,
     ToolboxComponent,
-    DatasetComponent, // 数据集组件
-    DataZoomComponent,
-    VisualMapComponent,
-    TimelineComponent,
-    CalendarComponent,
-    GraphicComponent,
-    TransformComponent, // 数据转换器组件(filter, sort)
-} from "echarts/components";
-
-// 引入渲染器：echarst默认使用canvas渲染，引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
-import { CanvasRenderer, SVGRenderer } from "echarts/renderers";
-
+    GridComponent,
+    DatasetComponent,
+    TransformComponent,
+    LegendComponent
+} from 'echarts/components';
 // 标签自动布局、全局过渡动画等特性
-import { LabelLayout, UniversalTransition } from "echarts/features";
-
-// 引入图表类型，后缀都为Chart
-import {
-    BarChart,
-    LineChart,
-    PieChart,
-    MapChart,
-    RadarChart,
-    PictorialBarChart,
-} from "echarts/charts";
+import { LabelLayout, UniversalTransition } from 'echarts/features';
+// 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
+import { CanvasRenderer } from 'echarts/renderers';
 
 // 注册必须的组件
 echarts.use([
-    // 内置组件
     TitleComponent,
     TooltipComponent,
     GridComponent,
-    PolarComponent,
-    AriaComponent,
-    ParallelComponent,
-    LegendComponent,
-    RadarComponent,
-    ToolboxComponent,
     DatasetComponent,
-    DataZoomComponent,
-    VisualMapComponent,
-    TimelineComponent,
-    CalendarComponent,
-    GraphicComponent,
     TransformComponent,
-    // 渲染器
-    CanvasRenderer,
-    SVGRenderer,
-    // 特性
-    LabelLayout,
-    UniversalTransition,
-    // 图表
     BarChart,
     LineChart,
+    LabelLayout,
+    UniversalTransition,
+    CanvasRenderer,
     PieChart,
-    MapChart,
-    RadarChart,
-    PictorialBarChart,
+    LegendComponent,
+    ToolboxComponent
 ]);
 
 export default echarts;

@@ -8,27 +8,8 @@
 <script setup>
 import { ref, watch } from 'vue';
 import setting from '@/setting'
-import { useAppSidebarStore } from "@/stores/AppSidebar";
-
-// 获取 store 判断是否折叠
-const appSidebarStore = useAppSidebarStore();
-// 用于控制 logo 显示的变量
-const isLogoVisible = ref(true);
-// 当 appSidebarStatus 改变时，控制 logo 是否显示
-watch(
-  () => appSidebarStore.appSidebarStatus,
-  (newStatus) => {
-    if (newStatus) {
-      isLogoVisible.value = false;
-    } else {
-      // 延迟显示 logo
-      setTimeout(() => {
-        isLogoVisible.value = true;
-      }, 200);
-    }
-  },
-  { immediate: true }
-);
+import { useSidebarLogoVisibility } from '@/hooks/useSidebarLogoVisibility';
+const { isLogoVisible } = useSidebarLogoVisibility();
 </script>
 
 <style lang="less" scoped>

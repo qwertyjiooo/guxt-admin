@@ -1,11 +1,11 @@
-import {createRouter, createWebHashHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 import routes from './routes'
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes: routes
+    history: createWebHistory(),
+    routes: routes
 })
 
 router.beforeEach((to, from, next) => {
@@ -15,12 +15,13 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
         next()
     } else {
-        // 判断是否有 token
-        if (token) {
-            next()
-        } else {
-            next('/login')
-        }
+        // // 判断是否有 token
+        // if (token) {
+        //     next()
+        // } else {
+        //     next('/login')
+        // }
+        next()
     }
 })
 router.afterEach(() => {

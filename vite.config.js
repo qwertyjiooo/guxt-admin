@@ -72,7 +72,7 @@ export default defineConfig({
   // 配置代理
   server: {
     host: '0.0.0.0',
-    port: 3000,
+    port: 4000,
     open: true,
     // proxy: {
     //   '/api': {

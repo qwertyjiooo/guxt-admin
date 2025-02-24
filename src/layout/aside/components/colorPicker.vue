@@ -7,13 +7,8 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-// 引入 store 切换侧边栏状态
-import { useAppSidebarStore } from "@/stores/AppSidebar";
-// 获取 store 判断是否折叠
-const appSidebarStore = useAppSidebarStore();
-
-// 引入 store 切换主题颜色
+import { ref } from "vue";
+import { useSidebarLogoVisibility } from "@/hooks/useSidebarLogoVisibility";
 import { useAppSettingStore } from "@/stores/AppSetting.js";
 const appStore = useAppSettingStore();
 const predefineColors = ref([
@@ -36,24 +31,8 @@ const predefineColors = ref([
 const changeThemeColor = (val) => {
   appStore.toggleThemeColor(val);
 };
-
-// 控制logo显示
-const isLogoVisible = ref(true);
-// 当 appSidebarStatus 改变时，控制 logo 是否显示
-watch(
-  () => appSidebarStore.appSidebarStatus,
-  (newStatus) => {
-    if (newStatus) {
-      isLogoVisible.value = false;
-    } else {
-      // 延迟显示 logo
-      setTimeout(() => {
-        isLogoVisible.value = true;
-      }, 200);
-    }
-  },
-  { immediate: true } // immediate: 立即执行一次回调函数
-);
+// 根据store的状态判断是否显示文字
+const { isLogoVisible } = useSidebarLogoVisibility();
 </script>
 
 <style lang="less" scoped>
