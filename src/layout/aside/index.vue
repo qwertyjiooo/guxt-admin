@@ -1,8 +1,12 @@
 <template>
   <div class="flex flex-col h-[100vh]">
     <Logo />
-    <el-menu :default-active="currentRoute" class="menu_container" width="200"
-      :collapse="appSidebarStore.appSidebarStatus">
+    <el-menu 
+      :default-active="currentRoute" 
+      class="menu_container" width="200"
+      :collapse="appSidebarStore.appSidebarStatus"
+      :unique-opened="true"
+    >
       <template v-for="(item, index) in asideRoutesList" :key="index">
         <!-- 二级路由的显示 -->
         <el-sub-menu :index="item.path" v-if="item.children && item.children.length > 0"

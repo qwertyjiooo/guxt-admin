@@ -26,4 +26,10 @@ import Main from './main/index.vue'
 .main-content {
     background-color: var(--main-background);
 }
+.el-main {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  overflow-x: hidden;
+  background-color: var(--el-bg-color-page);
+}
 </style>

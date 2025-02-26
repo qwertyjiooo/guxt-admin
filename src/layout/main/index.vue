@@ -1,5 +1,5 @@
 <template>
-    <div class="main-container">
+    <div class="main-container flex_column">
         <router-view v-slot="{ Component }">
             <transition name="fade" mode="out-in">
                 <component :is="Component" />
@@ -15,10 +15,7 @@
 .main-container {
     position: relative;
     width: 100%;
-    height: 100%;
-    // overflow: hidden;
-    background-color: var(--main-background);
-    overflow: visible;
+    height: calc(100vh - 80px);
 }
 
 .fade-enter-active,

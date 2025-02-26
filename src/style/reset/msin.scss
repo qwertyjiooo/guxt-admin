@@ -1,13 +1,96 @@
 // 通用的全局的样式
 
+.content {
+    flex: 1;
+    padding: 16px;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: var(--main-background);
+}
+
+.content_small {
+    flex: 1;
+    padding: 16px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.content_box_shadow {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+// 背景阴影
 .shadow_bg_3 {
-    // 背景阴影
-    transition: box-shadow 0.3s ease;
     overflow: visible;
+    transition: box-shadow 0.3s ease;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
+// 鼠标悬停时的背景阴影
 .shadow_bg_3:hover {
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
     position: relative;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex_center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex_center_y {
+    display: flex;
+    align-items: center;
+}
+
+.flex_center_x {
+    display: flex;
+    justify-content: center;
+}
+
+.flex_between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex_between_y {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex_between_x {
+    display: flex;
+    align-items: center;
+}
+
+.flex_around {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flex_around_y {
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex_around_x {
+    display: flex;
+    align-items: center;
+}
+
+
+/* scroll bar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: var(--el-border-color-darker);
 }
