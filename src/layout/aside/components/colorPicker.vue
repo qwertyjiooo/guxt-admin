@@ -35,9 +35,9 @@ const changeThemeColor = (val) => {
 const { isLogoVisible } = useSidebarLogoVisibility();
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .color-picker {
-  height: 40px;
+  height: var(--aside_picker_height);
   display: flex;
   align-items: center;
   padding-left: 17px;

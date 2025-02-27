@@ -5,6 +5,7 @@
     --footer_height: 30px; /* footer 高度 */
     --aside_width: 210px; /* aside 宽度 */
     --tabs_height: 40px; /* tabs 高度 */
+    --aside_picker_height: 40px; /* aside 底部颜色高度 */
 }
 
 
@@ -22,9 +23,11 @@
     overflow: hidden;
     border-radius: 8px;
 }
+
 .content_box_shadow {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
+
 // 背景阴影
 .shadow_bg_3 {
     overflow: visible;
@@ -106,15 +109,17 @@
 /* fade-transform */
 .fade-transform-leave-active,
 .fade-transform-enter-active {
-  transition: all 0.2s;
+    transition: all 0.2s;
 }
+
 .fade-transform-enter-from {
-  opacity: 0;
-  transition: all 0.2s;
-  transform: translateX(-30px);
+    opacity: 0;
+    transition: all 0.2s;
+    transform: translateX(-30px);
 }
+
 .fade-transform-leave-to {
-  opacity: 0;
-  transition: all 0.2s;
-  transform: translateX(30px);
+    opacity: 0;
+    transition: all 0.2s;
+    transform: translateX(30px);
 }

@@ -18,7 +18,7 @@
             <span>{{ item.meta.title }}</span>
           </template>
           <el-menu-item v-for="(child, i) in item.children" :key="i" :index="child.path"
-            @click="handleClick(child.path)" :class="{ 'menu-item-active': currentRoute === child.path }">{{
+            @click="handleClick(child.path)" :class="{ 'menu-item-active': currentRoute === child.path, 'menu_item': true }">{{
               child.meta.title }}</el-menu-item>
         </el-sub-menu>
         <!-- 一级路由的显示 -->
@@ -81,13 +81,16 @@ router.afterEach(() => {
 
 </script>
 
-<style lang="less">
+<style lang="scss">
+.menu_item {
+  background-color: var(--main-background);
+}
 .menu_container:not(.el-menu--collapse) {
   width: var(--aside_width);
 }
 
 .menu_container {
-  height: calc(100vh - 100px);
+  height: calc(100vh - var(--header_height) - var(--aside_picker_height));
   overflow-x: hidden;
   overflow-y: auto;
 }

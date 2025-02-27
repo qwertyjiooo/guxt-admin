@@ -1,6 +1,6 @@
 <!-- 菜单收起与展开 -->
 <template>
-    <div class="flex h-full items-center pr-4">
+    <div class="flex h-full items-center pr-4 cursor-pointer">
         <el-icon v-show="!appSidebarStore.appSidebarStatus" @click="toggleSidebar">
             <Fold color="FFFFFF" />
         </el-icon>

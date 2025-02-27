@@ -1,5 +1,5 @@
 <template>
-    <div class="w-auto">
+    <div class="flex-1 overflow-hidden">
         <el-breadcrumb :separator-icon="ArrowRight" class="breadcrumb">
             <el-breadcrumb-item v-for="(item, index) in routeList" :key="index" style="color: black;">
                 <span>{{ item }}</span>
@@ -37,8 +37,7 @@ watch(route, (newRoute, oldRoute) => {
     align-items: center;
     font-size: 15px;
     line-height: 100%;
-    overflow: hidden;
-
+    width: 200px;
     span {
         font-weight: 600;
     }

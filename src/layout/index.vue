@@ -22,18 +22,20 @@ import Main from './main/index.vue'
 import Footer from './footer/index.vue'
 import Tabs_ from './tabs_/index.vue'
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .common-layout {
     width: 100vw;
     height: 100vh;
 }
+
 .main-content {
     background-color: var(--main-background);
 }
+
 .el-main {
-  box-sizing: border-box;
-  padding: 10px 12px;
-  overflow-x: hidden;
-  background-color: var(--el-bg-color-page);
+    box-sizing: border-box;
+    padding: 10px 12px;
+    overflow-x: hidden;
+    background-color: var(--el-bg-color-page);
 }
 </style>
