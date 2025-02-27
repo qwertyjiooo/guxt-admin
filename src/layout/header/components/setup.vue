@@ -1,10 +1,10 @@
 <template>
-  <div class="h-full flex items-center pr-4">
+  <div class="">
     <el-popover placement="bottom" :width="200" trigger="click">
       <template #reference>
-        <div>
-          <span class="cursor-pointer" title="系统设置">
-            <img src="@/assets/svg/shezhi.svg" alt="" class="w-5 h-5" />
+        <div class="h-full pr-4 cursor-pointer flex_center" title="系统设置">
+          <span class="flex_center">
+            <el-icon size="20"><Setting /></el-icon>
           </span>
         </div>
       </template>
@@ -33,7 +33,7 @@
 <script setup>
 import { ref } from "vue";
 import { useAppSettingStore } from "@/stores/AppSetting.js";
-import { Sunny, Moon, Refresh } from "@element-plus/icons-vue";
+import { Sunny, Moon, Refresh, Setting } from "@element-plus/icons-vue";
 import { useDebounceFn } from "@vueuse/core";
 const predefineColors = ref([
   "rgba(63, 81, 181, 1)",

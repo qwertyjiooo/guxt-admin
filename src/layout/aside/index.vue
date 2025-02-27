@@ -3,7 +3,7 @@
     <Logo />
     <el-menu 
       :default-active="currentRoute" 
-      class="menu_container" width="200"
+      class="menu_container"
       :collapse="appSidebarStore.appSidebarStatus"
       :unique-opened="true"
     >
@@ -83,7 +83,7 @@ router.afterEach(() => {
 
 <style lang="less">
 .menu_container:not(.el-menu--collapse) {
-  width: 180px;
+  width: var(--aside_width);
 }
 
 .menu_container {

@@ -1,3 +1,4 @@
+<!-- 菜单收起与展开 -->
 <template>
     <div class="flex h-full items-center pr-4">
         <el-icon v-show="!appSidebarStore.appSidebarStatus" @click="toggleSidebar">
@@ -21,6 +22,7 @@ const toggleSidebar = () => {
 
 <style lang='less' scoped>
 :deep(.el-icon) {
-    color: #FFFFFF !important;
+    // color: #FFFFFF !important;
+    font-size: 20px !important;
 }
 </style>

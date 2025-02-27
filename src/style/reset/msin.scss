@@ -1,5 +1,13 @@
 // 通用的全局的样式
 
+:root {
+    --header_height: 55px; /* header 高度 */
+    --footer_height: 30px; /* footer 高度 */
+    --aside_width: 210px; /* aside 宽度 */
+    --tabs_height: 40px; /* tabs 高度 */
+}
+
+
 .content {
     flex: 1;
     padding: 16px;
@@ -93,4 +101,20 @@
 ::-webkit-scrollbar-thumb {
     border-radius: 20px;
     background-color: var(--el-border-color-darker);
+}
+
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 0.2s;
+}
+.fade-transform-enter-from {
+  opacity: 0;
+  transition: all 0.2s;
+  transform: translateX(-30px);
+}
+.fade-transform-leave-to {
+  opacity: 0;
+  transition: all 0.2s;
+  transform: translateX(30px);
 }

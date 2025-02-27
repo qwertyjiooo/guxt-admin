@@ -4,7 +4,7 @@ const homeRouter = [
         name: 'Home',
         component: () => import('@/views/home/index.vue'),
         meta: {
-            title: '数据首页',
+            title: '首页展示',
         }
     }
 ]

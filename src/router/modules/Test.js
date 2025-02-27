@@ -3,17 +3,17 @@ const aboutRouter = [
         path: '/system',
         name: 'system',
         component: '',
-        redirect: '/system/about',
+        redirect: '/system/Test',
         meta: {
-            title: '关于',
+            title: '用于测试',
         },
         children: [
             {
-                path: '/system/about',
-                name: 'about',
-                component: () => import('@/views/about/index.vue'),
+                path: '/system/Test',
+                name: 'Test',
+                component: () => import('@/views/Test/index.vue'),
                 meta: {
-                    title: '测试页面',
+                    title: '表格响应式测试',
                 }
             },
             {

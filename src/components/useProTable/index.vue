@@ -1,6 +1,6 @@
 <template>
-    <div class="flex_column" style="flex: 1; overflow: auto;">
-        <el-table :data="tableData" style="">
+    <div class="flex_column flex-1 overflow-auto">
+        <el-table :data="tableColumns" height="">
             <el-table-column prop="date" label="Date" width="180" />
             <el-table-column prop="name" label="Name" width="180" />
             <el-table-column prop="address" label="Address" />
@@ -8,127 +8,17 @@
     </div>
 </template>
 
-<script setup name="useProTable">
-const tableData = [
-    {
-        date: '2016-05-02',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
+<script setup>
+defineProps({
+    tableColumns: { // 表格数据
+        type: Array,
+        default: () => [],
     },
-    {
-        date: '2016-05-04',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
+    tableData: { // 表格数据
+        type: Array,
+        default: () => [],
     },
-    {
-        date: '2016-05-01',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-03',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    }, {
-        date: '2016-05-04',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-01',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-03',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    }, {
-        date: '2016-05-04',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-01',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-03',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    }, {
-        date: '2016-05-04',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-01',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-03',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    }, {
-        date: '2016-05-04',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-01',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-03',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    }, {
-        date: '2016-05-04',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-01',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-03',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    }, {
-        date: '2016-05-04',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-01',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-03',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    }, {
-        date: '2016-05-04',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-01',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-    {
-        date: '2016-05-03',
-        name: 'John Smith',
-        address: 'No.1518, Jinshajiang Road, Putuo District',
-    },
-]
+})
 </script>
 
 <style lang="less" scoped></style>

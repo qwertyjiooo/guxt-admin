@@ -23,23 +23,17 @@ import fold from './components/fold.vue'
 
 <style lang='less' scoped>
 .header {
-    background-color: var(--menu-active-text);
     width: auto;
     display: flex;
     position: relative;
     box-sizing: border-box;
+    height: var(--header_height);
+    background-color: var(--main-background);
     border-bottom: 1px solid var(--main-border-color);
 }
 
-.breadcrumb {
-    height: 40px;
-    display: flex;
-    align-items: end;
-    font-size: 18px;
-}
-
 .right {
-    padding:0 20px;
+    padding: 0 20px;
 }
 
 // 面包屑 separator 颜色

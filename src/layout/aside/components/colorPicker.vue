@@ -45,6 +45,7 @@ const { isLogoVisible } = useSidebarLogoVisibility();
   // 文字不换行
   white-space: nowrap;
   background-color: var(--menu-background);
-  // border-right: var(--main-border-color) 1px solid;
+  border-right: var(--main-border-color) 1px solid;
+  box-sizing: border-box;
 }
 </style>

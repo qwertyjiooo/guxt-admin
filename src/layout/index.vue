@@ -6,9 +6,11 @@
             </el-aside>
             <el-container style="flex-direction: column;">
                 <Header />
+                <Tabs_ />
                 <el-main class="main-content">
                     <Main />
                 </el-main>
+                <Footer />
             </el-container>
         </el-container>
     </div>
@@ -17,6 +19,8 @@
 import Aside from './aside/index.vue'
 import Header from './header/index.vue'
 import Main from './main/index.vue'
+import Footer from './footer/index.vue'
+import Tabs_ from './tabs_/index.vue'
 </script>
 <style lang="less">
 .common-layout {
