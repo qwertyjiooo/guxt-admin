@@ -1,42 +1,31 @@
 <template>
-    <div>
-        <el-tabs v-model="editableTabsValue" type="card" class="demo-tabs" closable @tab-remove="removeTab">
-            <el-tab-pane v-for="item in editableTabs" :key="item.name" :label="item.title" :name="item.name">
-                <template #label>
-                    {{ item.title }}
-                </template>
-            </el-tab-pane>
-        </el-tabs>
-    </div>
-
+    <el-tabs v-model="editableTabsValue" type="card" @tab-click="tabClick" class="demo-tabs" closable
+        @tab-remove="removeTab">
+        <el-tab-pane v-for="item in editableTabs" :key="item.path" :label="item.title" :name="item.path"
+            :closable="true">
+            <template #label>
+                {{ item.title }}
+            </template>
+        </el-tab-pane>
+    </el-tabs>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-let tabIndex = 2
-const editableTabsValue = ref('2')
-const editableTabs = ref([
-    {
-        title: 'Tab 1',
-        name: '1',
-        content: 'Tab 1 content',
-    },
-    {
-        title: 'Tab 2',
-        name: '2',
-        content: 'Tab 2 content',
-    },
-])
+import { ref, onMounted, watch } from 'vue'
+import { useTabsStore } from '@/stores/tabs.js'
+import { useRoute, useRouter } from "vue-router";
 
-const addTab = (targetName) => {
-    const newTabName = `${++tabIndex}`
-    editableTabs.value.push({
-        title: 'New Tab',
-        name: newTabName,
-        content: 'New Tab content',
-    })
-    editableTabsValue.value = newTabName
-}
+const route = useRoute();
+const router = useRouter();
+const tabsStore = useTabsStore()
+
+const editableTabsValue = ref(route.fullPath)
+const editableTabs = tabsStore.tabsMenuList
+
+onMounted(() => {
+    initTabs()
+})
+
 const removeTab = (targetName) => {
     const tabs = editableTabs.value
     let activeName = editableTabsValue.value
@@ -57,12 +46,21 @@ const removeTab = (targetName) => {
     // 更新活动标签页
     editableTabsValue.value = activeName;
 }
+const tabClick = (tab) => {
+    console.log(tab);
+    router.push(tab.props.name)
+}
+// 初始化 数据
+const initTabs = () => {
+    tabsStore.initTabs()
+}
 
 </script>
 
 <style scoped lang="less">
 :deep(.el-tabs__header) {
     margin: 0 !important;
+    padding: 0 20px !important;
     height: var(--tabs_height);
     // 禁止文本选中
     user-select: none;

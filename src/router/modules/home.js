@@ -5,6 +5,7 @@ const homeRouter = [
         component: () => import('@/views/home/index.vue'),
         meta: {
             title: '首页展示',
+            close: true,
         }
     }
 ]

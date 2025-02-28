@@ -23,9 +23,9 @@
 - vite: https://cn.vitejs.dev/
 
 ## 环境说明
-- node: v18.19.1
-- npm: 10.2.4
-- pnpm: 9.13.2
+- node: v20.12.2
+- npm: 10.5.0
+- pnpm: 10.5.2
 
 ## 目录说明
 

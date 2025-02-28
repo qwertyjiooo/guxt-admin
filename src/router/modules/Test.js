@@ -17,11 +17,11 @@ const aboutRouter = [
                 }
             },
             {
-                path: '/404',
-                name: '404',
-                component: () => import('@/views/error-page/404.vue'),
+                path: '/system/laJi',
+                name: 'LaJi',
+                component: () => import('@/views/Test/laji/index.vue'),
                 meta: {
-                    title: '404',
+                    title: '垃圾页面',
                 }
             }
         ]
