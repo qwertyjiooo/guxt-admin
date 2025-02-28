@@ -1,8 +1,7 @@
 <template>
-    <el-tabs v-model="editableTabsValue" type="card" @tab-click="tabClick" class="demo-tabs" closable
-        @tab-remove="removeTab">
+    <el-tabs v-model="editableTabsValue" type="card" @tab-click="tabClick" class="demo-tabs" @tab-remove="removeTab">
         <el-tab-pane v-for="item in editableTabs" :key="item.path" :label="item.title" :name="item.path"
-            :closable="true">
+            :closable="!item.close" :lazy='true'>
             <template #label>
                 {{ item.title }}
             </template>
@@ -26,36 +25,52 @@ onMounted(() => {
     initTabs()
 })
 
-const removeTab = (targetName) => {
-    const tabs = editableTabs.value
-    let activeName = editableTabsValue.value
+// 删除标签页
+const removeTab = (path) => {
+    // 先获取当前选中的 tab 的路径
+    const currentTabPath = editableTabsValue.value;
 
-    // 找到目标标签页
-    const index = tabs.findIndex(tab => tab.name === targetName);
-    if (index !== -1) {
-        // 如果删除的是当前活动的标签页，选择下一个或前一个
-        if (activeName === targetName) {
-            const nextTab = tabs[index + 1] || tabs[index - 1];
-            activeName = nextTab ? nextTab.name : '';
+    // 调用 store 中的 removeTabs 方法
+    tabsStore.removeTabs(path);
+
+    // 检查删除的 tab 是否是当前选中的 tab
+    if (currentTabPath === path) {
+        // 获取删除 tab 后的 tabs 列表
+        const remainingTabs = tabsStore.tabsMenuList;
+
+        // 如果仍然有剩余的 tabs，选择最后一个标签页，或选择第一个
+        if (remainingTabs.length > 0) {
+            // 自动跳转到最后一个标签页（也可以根据需求选择其他策略）
+            editableTabsValue.value = remainingTabs[remainingTabs.length - 1].path;
+            router.push(remainingTabs[remainingTabs.length - 1].path);
+        } else {
+            // 如果没有剩余的标签页，可以选择跳转到一个默认路由
+            editableTabsValue.value = '/'; // 或者您定义的任何默认路径
+            router.push('/'); // 这里指定默认路由
         }
-
-        // 删除该标签页
-        tabs.splice(index, 1);
     }
+}
 
-    // 更新活动标签页
-    editableTabsValue.value = activeName;
-}
 const tabClick = (tab) => {
-    console.log(tab);
-    router.push(tab.props.name)
+    router.push(tab.props.name);
 }
+
 // 初始化 数据
 const initTabs = () => {
     tabsStore.initTabs()
 }
 
+// 监听路由变化
+watch(
+    () => route.fullPath,
+    (newVal) => {
+        editableTabsValue.value = newVal
+        tabsStore.addTabs(route)
+    },
+    { immediate: true }
+)
 </script>
+
 
 <style scoped lang="less">
 :deep(.el-tabs__header) {

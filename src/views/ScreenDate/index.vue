@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between h-[120px]">
       <HomeCard v-for="item in cardList" :key="item.id" :cardData="item" class="w-[24%]" />
     </div>
-    <div class="flex-1 flex justify-between pt-[20px]">
+    <div class="flex-1 flex justify-between pt-[10px]">
       <div class="w-[74.7%] flex flex-col justify-between">
         <div class="h-[40%] flex justify-between">
           <div class="shadow_bg_3 w-[32.3%] h-[100%] text-[#fff] rounded-[10px] p-[20px] bg-[var(--main-background)]">

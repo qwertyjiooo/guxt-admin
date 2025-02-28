@@ -24,17 +24,21 @@ export const useTabsStore = defineStore('tabs', () => {
             name: tab.name || '',
             title: tab.meta.title || '',
             path: tab.path || '',
-            close: tab.meta.close || false
+            close: tab.meta.close
         }
-        console.log(tabsParams);
         tabsMenuList.value.push(tabsParams);
         dbUtils.set('tabsMenuList', tabsMenuList.value)
     }
 
     // 删除标签页
-    const removeTabs = (name) => {
-
+    const removeTabs = (path) => {
+        const index = tabsMenuList.value.findIndex(item => item.path === path);
+        if (index !== -1) {
+            tabsMenuList.value.splice(index, 1);
+            dbUtils.set('tabsMenuList', tabsMenuList.value);
+        }
     }
+    
     // 关闭所有标签页
     return {
         tabsMenuList,
