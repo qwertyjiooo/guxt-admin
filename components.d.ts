@@ -16,6 +16,7 @@ declare module 'vue' {
     ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDivider: typeof import('element-plus/es')['ElDivider']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
     ElDropdownItem: typeof import('element-plus/es')['ElDropdownItem']
     ElDropdownMenu: typeof import('element-plus/es')['ElDropdownMenu']
@@ -40,11 +41,13 @@ declare module 'vue' {
     FullScreen: typeof import('./src/layout/header/components/FullScreen.vue')['default']
     Gradient: typeof import('./src/components/Gradient/index.vue')['default']
     HomeCard: typeof import('./src/views/ScreenDate/components/homeCard.vue')['default']
+    Input: typeof import('./src/components/Input/index.vue')['default']
     Logo: typeof import('./src/layout/aside/components/logo.vue')['default']
     ProfilePicture: typeof import('./src/layout/header/components/profilePicture.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Setup: typeof import('./src/layout/header/components/setup.vue')['default']
+    Switch: typeof import('./src/components/Switch/index.vue')['default']
     UseProTable: typeof import('./src/components/useProTable/index.vue')['default']
   }
 }

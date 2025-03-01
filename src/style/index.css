@@ -2,9 +2,11 @@
 @import './reset/style.scss';
 /* 全局样式 */
 @import './reset/main.scss';
+/* 全局变量 */
+@import './reset/common.scss';
 /* tailwind配置样式 */
 @import './tailwind/index.css';
 /* 默认主题样式 */
-@import './scss/index.scss';
+@import './element/index.scss';
 /* 主题样式 */
-@import './scss/_variables.scss';
+@import './element/_variables.scss';

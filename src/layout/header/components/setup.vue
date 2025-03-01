@@ -10,8 +10,7 @@
       </template>
       <section>
         <h4>系统主题</h4>
-        <el-switch size="default" v-model="useAppStore.appThemeDark" @change="changeThemeType"
-          :active-action-icon="Sunny" :inactive-action-icon="Moon" />
+        <Switch />
         <h4>主题颜色</h4>
         <div class="theme-color-list">
           <span v-for="(item, index) in predefineColors" :key="index" :title="item" @click="changeThemeColor(item)"
@@ -23,8 +22,6 @@
           </el-icon>
           重置
         </el-button>
-        <!-- <h4>自定义主题颜色</h4>
-        <el-color-picker v-model="useAppStore.appThemeColor" size="default" @change="changeThemeColor" show-alpha /> -->
       </section>
     </el-popover>
   </div>
@@ -33,7 +30,8 @@
 <script setup>
 import { ref } from "vue";
 import { useAppSettingStore } from "@/stores/AppSetting.js";
-import { Sunny, Moon, Refresh, Setting } from "@element-plus/icons-vue";
+import Switch from "@/components/Switch/index.vue";
+import { Refresh, Setting} from "@element-plus/icons-vue";
 import { useDebounceFn } from "@vueuse/core";
 const predefineColors = ref([
   "rgba(63, 81, 181, 1)",
@@ -57,10 +55,6 @@ const useAppStore = useAppSettingStore();
 // 预定义主题颜色
 const changeThemeColor = (color) => {
   useAppStore.toggleThemeColor(color);
-};
-// 切换主题模式
-const changeThemeType = (val) => {
-  useAppStore.toggleThemeDark(val);
 };
 // 重置设置 - 防抖
 const debouncedResetSetting = useDebounceFn(() => {

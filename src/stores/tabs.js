@@ -3,7 +3,7 @@ import routes from "@/router/routes";
 import dbUtils from '@/utils/util.strotage.js'
 
 export const useTabsStore = defineStore('tabs', () => {
-    const tabsMenuList = ref(dbUtils.get('tabsMenuList') || []); // 标签页列表
+    const tabsMenuList = ref(JSON.parse(dbUtils.get('tabsMenuList')) || []); // 标签页列表
     // 初始化标签页
     const initTabs = () => {
         const flatRoutes = (item) => { // 扁平化路由
@@ -38,7 +38,7 @@ export const useTabsStore = defineStore('tabs', () => {
             dbUtils.set('tabsMenuList', tabsMenuList.value);
         }
     }
-    
+
     // 关闭所有标签页
     return {
         tabsMenuList,

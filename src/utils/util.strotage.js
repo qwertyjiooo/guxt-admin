@@ -19,7 +19,8 @@ export default {
                 return null; // 若没有找到该值，返回 null
             }
             // 尝试解析 JSON 数据，若失败则返回原始值
-            return JSON.parse(value);
+            // return JSON.parse(value);
+            return  value;
         } catch (e) {
             // 如果 JSON 解析失败，直接返回原始字符串值
             return null;

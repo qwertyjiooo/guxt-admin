@@ -10,7 +10,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { resolve } from 'path'
 
 // tailwindcss 配置
-import tailwindcss from  'tailwindcss'
+import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
 
 const pathSrc = resolve(__dirname, './src')
@@ -93,8 +93,8 @@ export default defineConfig({
     assetsDir: 'assets', // 静态资源目录
     // cssCodeSplit: true, // 开启 css 代码分割
     // sourcemap: false, // 关闭 sourcemap
+    minify: 'terser', // 压缩代码,混淆器，terser构建后文件体积更小
     rollupOptions: { // 构建配置
-      minify: 'terser', // 压缩代码,混淆器，terser构建后文件体积更小
       output: {
         // 资源文件名格式
         chunkFileNames: 'assets/js/[name]-[hash].js', // 代码分割文件名

@@ -1,3 +1,4 @@
+<!-- 表格组件 -->
 <template>
     <div class="flex_column flex-1 overflow-auto">
         <el-table :data="tableColumns" border style="width: 100%;box-sizing: border-box;">
