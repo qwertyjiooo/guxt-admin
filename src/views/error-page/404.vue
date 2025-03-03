@@ -16,7 +16,7 @@ const goBack = () => {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .not-found-container {
     display: flex;
     justify-content: center;

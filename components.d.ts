@@ -41,7 +41,7 @@ declare module 'vue' {
     FullScreen: typeof import('./src/layout/header/components/FullScreen.vue')['default']
     Gradient: typeof import('./src/components/Gradient/index.vue')['default']
     HomeCard: typeof import('./src/views/ScreenDate/components/homeCard.vue')['default']
-    Input: typeof import('./src/components/Input/index.vue')['default']
+    Input: typeof import('./src/views/LoginPage/Account/components/Input.vue')['default']
     Logo: typeof import('./src/layout/aside/components/logo.vue')['default']
     ProfilePicture: typeof import('./src/layout/header/components/profilePicture.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
