@@ -8,7 +8,7 @@
             <template #dropdown>
                 <el-dropdown-menu>
                     <el-dropdown-item>修改密码</el-dropdown-item>
-                    <el-dropdown-item>退出登录</el-dropdown-item>
+                    <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
             </template>
         </el-dropdown>
@@ -16,6 +16,17 @@
 </template>
 
 <script setup>
+import { removeCookie } from '@/utils/util.cookie';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+// 退出登录
+const logout = () => {
+    const timer = setTimeout(() => {
+        removeCookie('token');
+        router.push('/login');
+        clearTimeout(timer);
+    }, 500);
+}
 </script>
 
 <style lang="less" scoped></style>

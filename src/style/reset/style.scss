@@ -86,3 +86,13 @@ div:focus {
   /* 添加阴影 */
   box-shadow: 0 0 10px var(--el-color-primary), 0 0 5px var(--el-color-primary);
 }
+
+// 禁用数字输入框的上下箭头
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

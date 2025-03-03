@@ -2,16 +2,16 @@
     <div style="width: 100%;">
         <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" class="demo-ruleForm">
             <!-- 账号 -->
-            <el-form-item label="" prop="pass">
-                <el-input size="large" v-model="ruleForm.account">
+            <el-form-item label="" prop="account">
+                <el-input size="large" v-model="ruleForm.account" placeholder="请输入账号">
                     <template #prefix>
                         <span class="prefix">账号</span>
                     </template>
                 </el-input>
             </el-form-item>
             <!-- 密码 -->
-            <el-form-item label="" prop="checkPass">
-                <el-input size="large" v-model="ruleForm.password" type="password" show-password>
+            <el-form-item label="" prop="password">
+                <el-input size="large" v-model="ruleForm.password" type="password" placeholder="请输入密码" show-password>
                     <template #prefix>
                         <span class="prefix">密码</span>
                     </template>
@@ -19,8 +19,10 @@
             </el-form-item>
             <!-- 按钮 -->
             <el-form-item>
-                <el-button type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
-                <el-button @click="resetForm(ruleFormRef)">注册</el-button>
+                <div class="flex_between" style="width: 100%">
+                    <el-button :loading="loadingLogin" style="width: 48%;" size="large" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
+                    <el-button style="width: 48%;" size="large" @click="resetForm(ruleFormRef)">注册</el-button>
+                </div>
             </el-form-item>
         </el-form>
     </div>
@@ -28,28 +30,36 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
+import { setCookie } from '@/utils/util.cookie'
+const router = useRouter()
 const ruleFormRef = ref('')
 const ruleForm = reactive({
-    account: '', // 账号
-    password: '', // 密码
+    account: 'admin', // 账号
+    password: '123456', // 密码
 })
 // 登录 操作
+const loadingLogin = ref(false)
 const submitForm = (rules) => {
-    console.log(rules)
+    loadingLogin.value = true
+    // 定时器
+    const timer = setTimeout(() => {
+        // 设置cookie
+        setCookie('token', ruleForm.account, 7)
+        ElMessage.success('登录成功')
+        loadingLogin.value = false
+        // 跳转
+        router.push('/home')
+        // 清除定时器
+        clearTimeout(timer)
+    }, 1000)
 }
 // 注册 操作
 const resetForm = (rules) => {
-    console.log(rules)
+    ElMessage.warning('暂未开放注册功能')
 }
-// 验证
-const rules = reactive({
-    account: [
-        { validator: validatePass, trigger: 'blur' },
-    ],
-    password: [
-        { validator: validatePass2, trigger: 'blur' },
-    ],
-})
+
 // 验证账号
 const validatePass = (rule, value, callback) => {
     if (value === '') {
@@ -66,6 +76,16 @@ const validatePass2 = (rule, value, callback) => {
         callback()
     }
 }
+
+// 验证
+const rules = reactive({
+    account: [
+        { validator: validatePass, trigger: 'blur' },
+    ],
+    password: [
+        { validator: validatePass2, trigger: 'blur' },
+    ],
+})
 </script>
 
 <style lang="scss" scoped>

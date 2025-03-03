@@ -1,5 +1,6 @@
 import axios from "axios";
 import router from "../router";
+import { getCookie } from "@/utils/util.cookie";
 
 const baseURL = import.meta.env.VITE_API_URL;
 const server = axios.create({
@@ -10,8 +11,8 @@ const server = axios.create({
 // 请求拦截器
 server.interceptors.request.use(
     config => {
-        // 判断 tokenn 是否存在
-        const token = localStorage.getItem("token");
+        // 判断 token 是否存在
+        const token = getCookie('token');
         if (token) config.headers['token'] = token;
         return config;
     },
