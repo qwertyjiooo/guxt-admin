@@ -1,25 +1,28 @@
 <template>
     <el-header class="header">
         <!-- 折叠按钮 -->
-        <fold></fold>
+        <Fold></Fold>
         <!-- 面包屑 -->
-        <breadcrumb></breadcrumb>
+        <Breadcrumb></Breadcrumb>
+        <!-- 搜索 -->
+        <Search></Search>
         <Gradient></Gradient>
+        <!-- 系统设置 -->
+        <Setup></Setup>
         <!-- 全屏 -->
         <FullScreen></FullScreen>
-        <!-- 系统设置 -->
-        <setup></setup>
         <!-- 信息设置 -->
-        <profilePicture></profilePicture>
+        <ProfilePicture></ProfilePicture>
     </el-header>
 </template>
 
 <script setup>
-import breadcrumb from './components/breadcrumb.vue'
-import setup from './components/setup.vue'
-import profilePicture from './components/profilePicture.vue'
+import Breadcrumb from './components/breadcrumb.vue'
+import Setup from './components/setup.vue'
+import ProfilePicture from './components/profilePicture.vue'
 import FullScreen from './components/FullScreen.vue'
-import fold from './components/fold.vue'
+import Fold from './components/fold.vue'
+import Search from './components/search.vue'
 import Gradient from '@/components/Gradient/index.vue'
 </script>
 
