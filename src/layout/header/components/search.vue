@@ -39,7 +39,7 @@ onMounted(() => {
   initTabs();
 });
 
-// 防抖
+// input 防抖
 const debouncedSearchInput = useDebounce(searchInput, 300); 
 // 模糊查询 路由名称 和 路由路径
 const search = () => {
@@ -48,7 +48,6 @@ const search = () => {
   searchList.value = routeList.value.filter(item => {
     return item.meta.title.includes(searchInput.value) || item.path.includes(searchInput.value);
   })
-  console.log(searchList.value);
 };
 watch(debouncedSearchInput, (val) => {
   search();

@@ -35,6 +35,12 @@ importers:
       pinia:
         specifier: ^2.3.1
         version: 2.3.1(vue@3.5.13)
+      sortablejs:
+        specifier: ^1.15.6
+        version: 1.15.6
+      unplugin-vue-setup-extend-plus:
+        specifier: ^1.0.1
+        version: 1.0.1
       vue:
         specifier: ^3.5.13
         version: 3.5.13
@@ -1014,6 +1020,10 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
+  magic-string@0.26.7:
+    resolution: {integrity: sha512-hX9XH3ziStPoPhJxLq1syWuZMxbDvGNbVchfrdCtanC7D13888bMFow61x8axrx+GfHLtVeAx2kxL7tTGRl+Ow==}
+    engines: {node: '>=12'}
+
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
 
@@ -1280,6 +1290,9 @@ packages:
   simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
 
+  sortablejs@1.15.6:
+    resolution: {integrity: sha512-aNfiuwMEpfBM/CN6LY0ibyhxPfPbyFeBTYJKCvzkJ2GkUpazIt3H+QIPAMHwqQ7tMKaHz1Qj+rJJCqljnf4p3A==}
+
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
@@ -1287,6 +1300,10 @@ packages:
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+
+  sourcemap-codec@1.4.8:
+    resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==}
+    deprecated: Please use @jridgewell/sourcemap-codec instead
 
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
@@ -1397,6 +1414,9 @@ packages:
         optional: true
       '@nuxt/kit':
         optional: true
+
+  unplugin-vue-setup-extend-plus@1.0.1:
+    resolution: {integrity: sha512-mW2IzkyJITyspAV/LEdnEyE1CJip9jB5fCeaVv7Q6X0oJyDrOxXoB+jyet0q5pRJNjErbjQx950/8NPTvbqLTQ==}
 
   unplugin@1.16.1:
     resolution: {integrity: sha512-4/u/j4FrCKdi17jaxuJA0jClGxB1AvU2hw/IuayPc4ay1XGaJs/rbb4v5WKwAjNifjmXK9PIFyuPiaK8azyR9w==}
@@ -2337,6 +2357,10 @@ snapshots:
 
   lru-cache@10.4.3: {}
 
+  magic-string@0.26.7:
+    dependencies:
+      sourcemap-codec: 1.4.8
+
   magic-string@0.30.17:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
@@ -2586,10 +2610,14 @@ snapshots:
     dependencies:
       is-arrayish: 0.3.2
 
+  sortablejs@1.15.6: {}
+
   source-map-js@1.2.1: {}
 
   source-map@0.6.1:
     optional: true
+
+  sourcemap-codec@1.4.8: {}
 
   string-width@4.2.3:
     dependencies:
@@ -2739,6 +2767,12 @@ snapshots:
     transitivePeerDependencies:
       - rollup
       - supports-color
+
+  unplugin-vue-setup-extend-plus@1.0.1:
+    dependencies:
+      '@vue/compiler-sfc': 3.5.13
+      magic-string: 0.26.7
+      unplugin: 1.16.1
 
   unplugin@1.16.1:
     dependencies:

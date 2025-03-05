@@ -13,7 +13,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup name="LoginPage">
 import Switch from "@/components/Switch/index.vue";
 import Account from "./Account/index.vue"
 import ScanCode from "./ScanCode/index.vue"

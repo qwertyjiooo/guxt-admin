@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup name="ScreenDate">
 import { ref, onMounted, markRaw, onUnmounted } from 'vue';
 import HomeCard from './components/homeCard.vue';
 import { cardList, option } from './data';

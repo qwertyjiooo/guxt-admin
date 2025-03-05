@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup name="Test">
 import useProTable from '@/components/useProTable/index.vue'
 import { ref } from 'vue'
 const tableColumns = [

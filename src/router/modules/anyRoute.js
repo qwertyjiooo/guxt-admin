@@ -2,7 +2,7 @@ export const anyRoute = [
     {
         //任意路由
         path: "/:pathMatch(.*)*",
-        redirect: "/404",
+        redirect: "/NotFound",
         name: "Any",
         meta: {
             title: '任意路由',

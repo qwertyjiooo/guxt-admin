@@ -7,6 +7,7 @@ import IconsResolver from 'unplugin-icons/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import vueSetupExtend from 'unplugin-vue-setup-extend-plus/vite'
 import { resolve } from 'path'
 
 // tailwindcss 配置
@@ -44,7 +45,8 @@ export default defineConfig({
     // 自动导入图标
     Icons({
       autoInstall: true,
-    })
+    }),
+    vueSetupExtend()
   ],
   // 配置别名
   resolve: {

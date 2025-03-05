@@ -1,56 +1,56 @@
 <template>
-    <el-tabs v-model="editableTabsValue" type="card" @tab-click="tabClick" class="demo-tabs" @tab-remove="removeTab">
-        <el-tab-pane v-for="item in editableTabs" :key="item.path" :label="item.title" :name="item.path"
-            :closable="!item.close" :lazy='true'>
-            <template #label>
-                {{ item.title }}
+    <div class="flex_center_between">
+        <el-tabs v-model="editableTabsValue" type="card" @tab-click="tabClick" class="demo-tabs" @tab-remove="removeTab">
+            <el-tab-pane v-for="item in editableTabs" :key="item.path" :label="item.title" :name="item.path"
+                :closable="!item.close" :lazy='true'>
+                <template #label>
+                    {{ item.title }}
+                </template>
+            </el-tab-pane>
+        </el-tabs>
+        <el-dropdown class="dropdown" placement="bottom-end" size="large" trigger="click">
+            <div class="dropdown_icon flex_center">
+                <el-icon size="20"><MoreFilled /></el-icon>
+            </div>
+            <template #dropdown>
+                <el-dropdown-menu>
+                    <el-dropdown-item @click="refresh"><el-icon><Refresh /></el-icon>刷新</el-dropdown-item>
+                    <el-dropdown-item @click="fullScreen"><el-icon><FullScreen /></el-icon>最大化</el-dropdown-item>
+                    <el-dropdown-item @click="remove"><el-icon><Remove /></el-icon>关闭当前</el-dropdown-item>
+                    <el-dropdown-item @click="dArrowLeft"><el-icon><DArrowLeft /></el-icon>关闭左侧</el-dropdown-item>
+                    <el-dropdown-item @click="dArrowRight"><el-icon><DArrowRight /></el-icon>关闭右侧</el-dropdown-item>
+                    <el-dropdown-item @click="circleClose"><el-icon><CircleClose /></el-icon>关闭其他</el-dropdown-item>
+                    <el-dropdown-item @click="removeAll"><el-icon><FolderDelete /></el-icon>关闭所有</el-dropdown-item>
+                </el-dropdown-menu>
             </template>
-        </el-tab-pane>
-    </el-tabs>
+        </el-dropdown>
+    </div>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import { useTabsStore } from '@/stores/tabs.js'
+import { ref, onMounted, watch } from 'vue';
+import Sortable from "sortablejs";
+import { useTabsStore } from '@/stores/tabs.js';
+import { useKeepAliveStore } from '@/stores/keepAlive';
 import { useRoute, useRouter } from "vue-router";
+import { MoreFilled, Refresh, FullScreen, Remove, DArrowLeft, DArrowRight, CircleClose, FolderDelete } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
 
 const route = useRoute();
 const router = useRouter();
-const tabsStore = useTabsStore()
+const tabsStore = useTabsStore();
+const keepAliveStore = useKeepAliveStore();
 
 const editableTabsValue = ref(route.fullPath)
 const editableTabs = tabsStore.tabsMenuList
-
-onMounted(() => {
-    initTabs()
-})
 
 // 删除标签页
 const removeTab = (path) => {
     // 先获取当前选中的 tab 的路径
     const currentTabPath = editableTabsValue.value;
-
-    // 调用 store 中的 removeTabs 方法
-    tabsStore.removeTabs(path);
-
-    // 检查删除的 tab 是否是当前选中的 tab
-    if (currentTabPath === path) {
-        // 获取删除 tab 后的 tabs 列表
-        const remainingTabs = tabsStore.tabsMenuList;
-
-        // 如果仍然有剩余的 tabs，选择最后一个标签页，或选择第一个
-        if (remainingTabs.length > 0) {
-            // 自动跳转到最后一个标签页（也可以根据需求选择其他策略）
-            editableTabsValue.value = remainingTabs[remainingTabs.length - 1].path;
-            router.push(remainingTabs[remainingTabs.length - 1].path);
-        } else {
-            // 如果没有剩余的标签页，可以选择跳转到一个默认路由
-            editableTabsValue.value = '/'; // 或者您定义的任何默认路径
-            router.push('/'); // 这里指定默认路由
-        }
-    }
+    tabsStore.removeTabs(path,currentTabPath);
 }
-
+// 标签页点击事件
 const tabClick = (tab) => {
     router.push(tab.props.name);
 }
@@ -60,19 +60,76 @@ const initTabs = () => {
     tabsStore.initTabs()
 }
 
+// 刷新当前页面操作
+const refresh = () => {
+    window.location.reload();
+}
+// 全屏操作
+const fullScreen = () => {
+    ElMessage.warning('功能开发中')
+}
+// 关闭当前菜单
+const remove = () => {
+    removeTab(route.fullPath)
+}
+// 关闭左侧菜单
+const dArrowLeft = () => {
+    tabsStore.removeLeftTabs(editableTabsValue.value)
+}
+// 关闭右侧菜单
+const dArrowRight = () => {
+    tabsStore.removeRightTabs(editableTabsValue.value)
+}
+// 关闭其他菜单
+const circleClose = () => {
+    tabsStore.removeOtherTabs(editableTabsValue.value)
+}
+// 关闭所有菜单
+const removeAll = () => {
+    tabsStore.removeAllTabs();
+}
+
+// 拖拽排序
+const tabsDrop = () => {
+    Sortable.create(document.querySelector('.el-tabs__nav'), {
+        // draggable: ".el-tabs__item",
+        animation: 300,
+        onEnd: (evt) => {
+            tabsStore.dragSort(evt.oldIndex, evt.newIndex)
+        }
+    })
+}
+
+onMounted(() => {
+    initTabs();
+    tabsDrop();
+})
 // 监听路由变化
 watch(
     () => route.fullPath,
     (newVal) => {
         editableTabsValue.value = newVal
         tabsStore.addTabs(route)
+        keepAliveStore.addKeepAlive(route.name)
     },
     { immediate: true }
 )
 </script>
 
 
-<style scoped lang="less">
+<style scoped lang="scss">
+.dropdown{
+    height: 100%;
+    .dropdown_icon {
+        height: 100%;
+        padding:0 20px 0 20px;
+        border-left: 1px solid #dcdfe6;
+        transition: all 0.3s ease;
+        &:hover{
+            background-color: var(--el-menu-hover-bg-color);
+        }
+    }
+}
 :deep(.el-tabs__header) {
     margin: 0 !important;
     padding: 0 20px !important;

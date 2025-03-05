@@ -1,7 +1,7 @@
 const loginRouter = [
     {
         path: '/login',
-        name: 'login',
+        name: 'LoginPage',
         component: () => import('@/views/LoginPage/index.vue'),
         meta: {
             title: '登录',

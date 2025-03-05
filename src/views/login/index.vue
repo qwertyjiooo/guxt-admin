@@ -36,7 +36,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup name="Login">
 import Scan from "./scan.vue";
 import Verification from "./Verification.vue";
 import Cipher from "./cipher.vue";

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-[100vh]">
+  <div class="flex flex-col h-[100vh] no_select">
     <Logo />
     <el-menu 
       :default-active="currentRoute" 
@@ -18,8 +18,12 @@
             <span>{{ item.meta.title }}</span>
           </template>
           <el-menu-item v-for="(child, i) in item.children" :key="i" :index="child.path"
-            @click="handleClick(child.path)" :class="{ 'menu-item-active': currentRoute === child.path, 'menu_item': true }">{{
-              child.meta.title }}</el-menu-item>
+            @click="handleClick(child.path)" :class="{ 'menu-item-active': currentRoute === child.path, 'menu_item': true }">
+            <el-icon>
+              <location />
+            </el-icon>
+            {{child.meta.title }}
+          </el-menu-item>
         </el-sub-menu>
         <!-- 一级路由的显示 -->
         <el-menu-item v-else :index="item.path" @click="handleClick(item.path)" :class="{ 'menu-item-active': currentRoute === item.path }">
@@ -56,7 +60,6 @@ const asideRoutes = () => {
   const filterRoutes = routes.filter((item) => item.meta.isShow);
   asideRoutesList.value = filterRoutes[0].children;
   currentRoute.value = route.path;
-  // console.log(filterRoutes[0].children);
 }
 
 const handleClick = (path) => {

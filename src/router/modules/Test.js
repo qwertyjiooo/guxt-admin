@@ -17,11 +17,11 @@ const aboutRouter = [
                 }
             },
             {
-                path: '/system/laJi',
-                name: 'LaJi',
-                component: () => import('@/views/Test/laji/index.vue'),
+                path: '/system/draggable',
+                name: 'Draggable',
+                component: () => import('@/views/Test/draggable/index.vue'),
                 meta: {
-                    title: '垃圾页面',
+                    title: '拖拽组件',
                 }
             }
         ]

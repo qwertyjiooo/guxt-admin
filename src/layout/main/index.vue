@@ -1,14 +1,19 @@
 <template>
     <div class="main-container flex_column">
-        <router-view v-slot="{ Component }">
+        <router-view v-slot="{ Component,route }">
             <transition name="fade-transform" mode="out-in">
-                <component :is="Component" />
+                <keep-alive :include="keepAliveStore.keepAliveList">
+                    <component :is="Component" :key="route.fullPath"></component>
+                </keep-alive>
             </transition>
         </router-view>
     </div>
 </template>
 
 <script setup>
+import { useKeepAliveStore } from '@/stores/keepAlive';
+const keepAliveStore = useKeepAliveStore();
+
 </script>
 
 <style lang="less" scoped>

@@ -1,4 +1,4 @@
-import notFoundRouter from './modules/404'
+import notFoundRouter from './modules/NotFound'
 import loginRouter from './modules/login'
 import homeRouter from './modules/home'
 import anyRoute from './modules/anyRoute'

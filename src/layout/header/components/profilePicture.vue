@@ -3,7 +3,7 @@
         <el-dropdown trigger="click">
             <div class="flex items-center">
                 <span class="cursor-pointer pr-2 text-[16px]">书中枫叶</span>
-                <img class="wh-8 h-8 rounded-full" src="https://avatars.githubusercontent.com/u/12345678?v=4" alt="">
+                <!-- <img class="wh-8 h-8 rounded-full" src="https://avatars.githubusercontent.com/u/12345678?v=4" alt=""> -->
             </div>
             <template #dropdown>
                 <el-dropdown-menu>

@@ -60,7 +60,6 @@ const changeThemeColor = (color) => {
 const debouncedResetSetting = useDebounceFn(() => {
   useAppStore.toggleThemeColor('');
   useAppStore.toggleThemeDark(true);
-  // console.log('重置设置');
 }, 500);
 
 </script>
