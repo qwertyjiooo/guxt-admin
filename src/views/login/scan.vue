@@ -1,7 +1,7 @@
 <template>
     <!-- 扫码登录 -->
     <div class="scan-container">
-        <div class="title">打开格致APP</div>
+        <div class="title">打开编辑后台APP</div>
         <div class="desc">在 [我的页面] 右上角打开扫一扫</div>
         <div class="qrcode">
             <!-- 二维码 -->
@@ -18,7 +18,7 @@
                 <div style="font-size: 12px; color: #373A40; margin-top: 12px;">二维码已过期，请刷新</div>
             </div>
         </div>
-        <a class="login-btn" href="http://www.gezhipro.com/home">下载格致APP</a>
+        <a class="login-btn" href="http://www.gezhipro.com/home">下载编辑后台APP</a>
     </div>
 </template>
 

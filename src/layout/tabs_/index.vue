@@ -1,6 +1,6 @@
 <template>
     <div class="flex_center_between">
-        <el-tabs v-model="editableTabsValue" type="card" @tab-click="tabClick" class="demo-tabs" @tab-remove="removeTab">
+        <el-tabs v-model="editableTabsValue" type="card" @tab-click="tabClick" class="demo_tabs" @tab-remove="removeTab">
             <el-tab-pane v-for="item in editableTabs" :key="item.path" :label="item.title" :name="item.path"
                 :closable="!item.close" :lazy='true'>
                 <template #label>
@@ -130,9 +130,12 @@ watch(
         }
     }
 }
+.demo_tabs {
+    overflow: auto;
+}
 :deep(.el-tabs__header) {
     margin: 0 !important;
-    padding: 0 20px !important;
+    padding: 0 10px !important;
     height: var(--tabs_height);
     // 禁止文本选中
     user-select: none;

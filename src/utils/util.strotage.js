@@ -1,4 +1,4 @@
-const t = 'GEZHI'
+const t = 'yuXin'
 const v = '1.0.0'
 
 export default {

@@ -4,7 +4,7 @@
     <el-dialog title="" v-model="dialogVisible" width="30%" :show-close="false">
       <el-input v-model="searchInput" placeholder="菜单搜索：支持菜单名称和路径" size="large" :prefix-icon="Search" clearable></el-input>
       <el-empty v-show="searchList.length === 0" description="暂无数据" :image-size="100" />
-      <el-menu  style="max-height: 500px;overflow: auto;">
+      <el-menu  style="max-height: 500px;overflow: auto;" :default-active="currentRoute">
         <el-menu-item v-for="item in searchList" :index="item.path" :key="item.path" @click="handleClick(item.path)">{{ item.meta.title }}</el-menu-item>
       </el-menu>
     </el-dialog>
@@ -22,7 +22,8 @@ const dialogVisible = ref(false); // 搜索框弹窗
 const searchInput = ref(""); // 搜索框输入内容
 const searchList = ref([]); // 搜索结果列表
 const routeList = ref([]); // 路由列表
-const router = useRouter();
+const router = useRouter(); // 路由实例
+const currentRoute = ref(router.currentRoute.value.path); // 当前路由
 // 路由扁平化操作
 const initTabs = () => {
     const flatRoutes = (item) => { // 扁平化路由

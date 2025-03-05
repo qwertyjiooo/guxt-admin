@@ -9,7 +9,7 @@
       "
     >
       <img src="@/assets/img/geZhiLogo.png" alt="" style="width: 60px" />
-      <div style="font-size: 28px; padding-left: 20px; color: #fff">格致</div>
+      <div style="font-size: 28px; padding-left: 20px; color: #fff">编辑后台</div>
     </div>
     <div class="theme-switch">
       <el-switch

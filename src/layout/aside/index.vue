@@ -2,7 +2,7 @@
   <div class="flex flex-col h-[100vh] no_select">
     <Logo />
     <el-menu 
-      :default-active="currentRoute" 
+      :default-active="currentRoute"
       class="menu_container"
       :collapse="appSidebarStore.appSidebarStatus"
       :unique-opened="true"

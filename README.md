@@ -1,4 +1,4 @@
-# gezhi_pc
+# yuXin_pc
 
 ## 项目分析
 - vue@3.5.12
@@ -30,7 +30,7 @@
 ## 目录说明
 
 ```
-gezhi_pc_web 
+yuXin_pc_web 
 │
 └── public 
 │
