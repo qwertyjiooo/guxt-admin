@@ -1,13 +1,13 @@
 import { ref, watch } from 'vue';
-import { useAppSidebarStore } from '@/stores/AppSidebar';
+import { useAppSettingStore } from '@/stores/AppSetting';
 
 // 处理侧边栏logo和底部更换颜色显隐时的顺滑度
 export function useSidebarLogoVisibility() {
-    const appSidebarStore = useAppSidebarStore();
+    const appSidebarStore = useAppSettingStore();
     const isLogoVisible = ref(true);
 
     watch(
-        () => appSidebarStore.appSidebarStatus,
+        () => appSidebarStore.global.appSidebarStatus,
         (newStatus) => {
             if (newStatus) {
                 isLogoVisible.value = false;

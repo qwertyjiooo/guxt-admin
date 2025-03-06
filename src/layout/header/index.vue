@@ -1,5 +1,6 @@
 <template>
     <el-header class="header">
+        <Logo></Logo>
         <!-- 折叠按钮 -->
         <Fold></Fold>
         <!-- 面包屑 -->
@@ -24,9 +25,10 @@ import FullScreen from './components/FullScreen.vue'
 import Fold from './components/fold.vue'
 import Search from './components/search.vue'
 import Gradient from '@/components/Gradient/index.vue'
+import Logo from '../components/logo.vue'
 </script>
 
-<style lang='less' scoped>
+<style lang='scss' scoped>
 .header {
     width: auto;
     display: flex;
@@ -37,8 +39,7 @@ import Gradient from '@/components/Gradient/index.vue'
     background-color: var(--main-background);
     border-bottom: 1px solid var(--main-border-color);
 }
-
-.right {
-    padding: 0 20px;
+:deep(.el-header) {
+    padding: 0 !important;
 }
 </style>

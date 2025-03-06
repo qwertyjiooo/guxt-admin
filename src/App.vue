@@ -11,9 +11,9 @@ import { useAppSettingStore } from '@/stores/AppSetting.js'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 const locale = zhCn
 const useAppStore = useAppSettingStore()
-useAppStore.initThemeColor()
 onMounted(() => {
-  
+  useAppStore.initThemeDark(); // 初始化暗色主题
+  useAppStore.initThemeColor(); // 初始化主题颜色
 })
 </script>
 

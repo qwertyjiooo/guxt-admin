@@ -20,7 +20,8 @@
             <!-- 按钮 -->
             <el-form-item>
                 <div class="flex_between" style="width: 100%">
-                    <el-button :loading="loadingLogin" style="width: 48%;" size="large" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
+                    <el-button :loading="loadingLogin" style="width: 48%;" size="large" type="primary"
+                        @click="submitForm(ruleFormRef)">登录</el-button>
                     <el-button style="width: 48%;" size="large" @click="resetForm(ruleFormRef)">注册</el-button>
                 </div>
             </el-form-item>

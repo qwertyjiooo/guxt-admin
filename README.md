@@ -1,9 +1,9 @@
-# yuXin_pc
+# guxt-admin
 
 ## 项目分析
-- vue@3.5.12
-- vue-router@4
-- element-plus@2.9.2
+- vue@3.5.13
+- vue-router@4.5.0
+- element-plus@2.9.4
 - pinia
 - axios
 - less
@@ -30,7 +30,7 @@
 ## 目录说明
 
 ```
-yuXin_pc_web 
+guxt-admin
 │
 └── public 
 │

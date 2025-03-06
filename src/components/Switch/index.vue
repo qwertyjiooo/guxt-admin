@@ -1,7 +1,7 @@
 <template>
   <div class="theme-switch">
       <el-switch size="default" 
-        v-model="useAppStore.appThemeDark" 
+        v-model="useAppStore.global.appThemeDark" 
         @change="changeThemeType" 
         :active-action-icon="Sunny"
         :inactive-action-icon="Moon" />

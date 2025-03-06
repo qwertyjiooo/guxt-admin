@@ -12,7 +12,7 @@ export const useTabsStore = defineStore('tabs', () => {
     const refresh = ref(true); // 存储是否需要刷新
 
     // 初始化标签页
-    const initTabs = () => {
+    const initTabs = async () => {
         const flatRoutes = (item) => { // 扁平化路由
             if (item.children) {
                 item.children.map(child => {
@@ -24,7 +24,7 @@ export const useTabsStore = defineStore('tabs', () => {
         routes.forEach(item => item.meta.isShow && flatRoutes(item));
     }
     // 添加选中的标签页
-    const addTabs = (tab) => {
+    const addTabs = async (tab) => {
         if (tabsMenuList.value.some(item => item.path === tab.path)) return;
         const tabsParams = {
             icon: tab.icon || '',
@@ -39,7 +39,7 @@ export const useTabsStore = defineStore('tabs', () => {
     }
 
     // 关闭单个标签页
-    const removeTabs = (path, tabPath) => {
+    const removeTabs = async (path, tabPath) => {
         // 若关闭的是固定页面，则不删除
         if (rootList.value.some(item => item === path)) return;
         // index 为要删除的标签页在数组中的索引
@@ -93,14 +93,14 @@ export const useTabsStore = defineStore('tabs', () => {
     }
 
     // 拖拽排序 传递两个参数索引，第一个为拖拽的索引，第二个为放置的索引
-    const dragSort = (dragIndex, dropIndex) => {
+    const dragSort = async (dragIndex, dropIndex) => {
         const dragItem = tabsMenuList.value.splice(dragIndex, 1)[0];
         tabsMenuList.value.splice(dropIndex, 0, dragItem);
         dbUtils.set('tabsMenuList', tabsMenuList.value);
     }
 
     // 设置刷新状态
-    const setRefresh = (status) => refresh.value = status;
+    const setRefresh = async (status) => refresh.value = status;
 
     return {
         refresh,

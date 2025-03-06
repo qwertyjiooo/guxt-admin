@@ -1,11 +1,13 @@
 <template>
   <div class="flex flex-col h-[100vh] no_select">
-    <Logo />
+    <div class="logo_container">
+      <Logo />
+    </div>
     <el-menu 
       :default-active="currentRoute"
       class="menu_container"
-      :collapse="appSidebarStore.appSidebarStatus"
-      :unique-opened="true"
+      :collapse="appSidebarStore.global.appSidebarStatus"
+      :unique-opened="appSidebarStore.global.appSettingAccordion"
     >
       <template v-for="(item, index) in asideRoutesList" :key="index">
         <!-- 二级路由的显示 -->
@@ -34,23 +36,21 @@
         </el-menu-item>
       </template>
     </el-menu>
-    <colorPicker />
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import Logo from './components/logo.vue';
-import colorPicker from './components/colorPicker.vue';
+import Logo from '@/layout/components/logo.vue';
 
 import { Location } from "@element-plus/icons-vue";
 import { useRouter, useRoute } from "vue-router";
 import routes from "@/router/routes";
 
 // 引入 store 切换侧边栏状态
-import { useAppSidebarStore } from "@/stores/AppSidebar";
+import { useAppSettingStore } from "@/stores/AppSetting";
 // 获取 store 判断是否折叠
-const appSidebarStore = useAppSidebarStore();
+const appSidebarStore = useAppSettingStore();
 
 const router = useRouter(); // 获取路由实例
 const route = useRoute(); // 获取当前路由信息
@@ -85,15 +85,20 @@ router.afterEach(() => {
 </script>
 
 <style lang="scss">
-.menu_item {
-  background-color: var(--main-background);
-}
+// .menu_item {
+//   background-color: var(--main-background);
+// }
+// .logo_container {
+//   box-sizing: border-box;
+//   border-right: 1px solid var(--main-border-color);
+// }
 .menu_container:not(.el-menu--collapse) {
   width: var(--aside_width);
 }
 
 .menu_container {
-  height: calc(100vh - var(--header_height) - var(--aside_picker_height));
+  // height: calc(100vh - var(--header_height) - var(--aside_picker_height));
+  flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
 }

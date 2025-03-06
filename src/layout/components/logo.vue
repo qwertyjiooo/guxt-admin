@@ -1,10 +1,10 @@
 <template>
-  <div class="logo">
+  <div class="logo logo_is_hidden logo_hidden">
     <span class="icon"><el-icon size="30">
         <Bowl />
       </el-icon>
     </span>
-    <div v-if="isLogoVisible">{{ setting.websiteInfo.name }}</div>
+    <div v-if="isLogoVisible" style="padding: 0 10px 0 10px;">{{ setting.websiteInfo.name }}</div>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ import { useSidebarLogoVisibility } from '@/hooks/useSidebarLogoVisibility';
 const { isLogoVisible } = useSidebarLogoVisibility();
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .logo {
   display: flex;
   align-items: center;
@@ -33,7 +33,12 @@ const { isLogoVisible } = useSidebarLogoVisibility();
   .icon {
     height: 30px;
     box-sizing: border-box;
-    padding: 0 10px 0 17px;
   }
+}
+.logo_is_hidden { // aside 占据一列时
+  padding: 0 10px 0 17px; 
+}
+.logo_hidden { // header 占据一行时
+  width: var(--aside_width);
 }
 </style>

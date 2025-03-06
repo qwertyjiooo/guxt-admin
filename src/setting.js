@@ -23,6 +23,14 @@ export default {
             close: 'esc'
         }
     },
+    // global 全局配置
+    global: {
+        appThemeColor: '#1e97f1', // 全局主题颜色
+        appThemeDark: true, // 是否暗黑模式
+        appSidebarStatus: false, // 是否显示侧边栏
+        appSettingAccordion: true, // 菜单手风琴
+        appWatermark: false, // 是否展示水印
+    },
     // 页脚备案信息
     reference: {
         

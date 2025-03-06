@@ -1,7 +1,8 @@
 <!-- 表格组件 -->
 <template>
     <div class="flex_column flex-1 overflow-auto">
-        <el-table :data="tableColumns" border style="width: 100%;box-sizing: border-box;">
+        <el-table :data="tableColumns" border style="width: 100%;box-sizing: border-box;flex: 1;">
+            <el-table-column fixed type="index" width="50" />
             <el-table-column fixed prop="date" label="Date" width="100" />
             <el-table-column prop="name" label="Name" width="120" />
             <el-table-column prop="state" label="State" width="120" />
@@ -17,6 +18,10 @@
                 </template>
             </el-table-column>
         </el-table>
+        <!-- 分页 -->
+        <div class="flex_center mt-[10px]">
+            <el-pagination background layout="prev, pager, next" :total="1000" />
+        </div>
     </div>
 </template>
 

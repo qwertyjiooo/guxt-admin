@@ -4,17 +4,12 @@ import Color from "color";
 import setting from '@/setting.js'
 
 export const useAppSettingStore = defineStore('appSetting', () => {
-    // state
-    // 主题颜色
-    const appThemeColor = ref(dbUtils.get('appThemeColor') || setting.theme.color)
-    // // 暗黑主题 // true 明亮 false 暗黑
-    const appThemeDark = ref(dbUtils.get('appThemeDark') === null ? true : dbUtils.get('appThemeDark') === 'light');
-    // action
-    // 初始化主题颜色
-    const initThemeColor = () => {
-        let newColor = appThemeColor.value
-        const rootStyle = document.documentElement.style
-        rootStyle.setProperty('--el-color-primary', newColor)
+    // global 数据
+    const global = ref(JSON.parse(dbUtils.get('global')) || setting.global);
+    // 主题色操作
+    const themeColor = (newColor) => {
+        const rootStyle = document.documentElement.style;
+        rootStyle.setProperty('--el-color-primary', newColor);
         rootStyle.setProperty(`--el-color-primary-dark-2`, newColor);
         for (let i = 1; i < 10; i++) {
             rootStyle.setProperty(
@@ -22,61 +17,49 @@ export const useAppSettingStore = defineStore('appSetting', () => {
                 `${Color(newColor).alpha(1 - i * 0.1)}`
             );
         }
-    }
+    };
+    // 初始化主题颜色
+    const initThemeColor = () => {
+        let newColor = global.value.appThemeColor;
+        themeColor(newColor);
+    };
     // 切换主题颜色
     const toggleThemeColor = (color) => {
         // 判断 color 是否为空 如果为空 则默认为 setting.theme.color
-        if (!color) {
-            color = setting.theme.color
-        }
-        dbUtils.set('appThemeColor', color)
-        appThemeColor.value = color
-        let newColor = color
-        const rootStyle = document.documentElement.style
-        rootStyle.setProperty('--el-color-primary', newColor)
-        rootStyle.setProperty(`--el-color-primary-dark-2`, newColor);
-        for (let i = 1; i < 10; i++) {
-            rootStyle.setProperty(
-                `--el-color-primary-light-${i}`,
-                `${Color(newColor).alpha(1 - i * 0.1)}`
-            );
-        }
+        if (!color) color = setting.global.appThemeColor;
+        global.value.appThemeColor = color;
+        dbUtilsStore();
+        let newColor = color;
+        themeColor(newColor);
     };
     // 初始化暗色主题
     const initThemeDark = () => {
-        if (!appThemeDark.value) {
-            dbUtils.set('appThemeDark', 'dark')
-            document.documentElement.classList.add("dark");
-        } else {
-            dbUtils.set('appThemeDark', 'light')
-            document.documentElement.classList.remove("dark");
-        }
+        if (!global.value.appThemeDark) document.documentElement.classList.add("dark");
+        else document.documentElement.classList.remove("dark");
     };
     // 暗色主题
     const toggleThemeDark = (type) => {
-        if (!type) {
-            dbUtils.set('appThemeDark', 'dark')
-            appThemeDark.value = false
-            document.documentElement.classList.add("dark");
+        const toggleStyle = (is, color) => {
+            global.value.appThemeDark = is;
+            dbUtilsStore();
             const rootStyle = document.documentElement.style;
-            rootStyle.setProperty(`--el-menu-text-color`, '#dedede');
-        } else {
-            dbUtils.set('appThemeDark', 'light')
-            appThemeDark.value = true
-            document.documentElement.classList.remove("dark");
-            const rootStyle = document.documentElement.style;
-            rootStyle.setProperty(`--el-menu-text-color`, '#606060');
+            rootStyle.setProperty(`--el-menu-text-color`, color);
         }
+        if (!type) toggleStyle(false, '#dedede'), document.documentElement.classList.add("dark");
+        else toggleStyle(true, '#606060'), document.documentElement.classList.remove("dark");
     };
-    initThemeDark(); // 初始化暗色主题
-    initThemeColor(); // 初始化主题颜色
+    // 持久化存储
+    const dbUtilsStore = () => {
+        dbUtils.set('global', global.value);
+    };
+
     return {
+        global,
         toggleThemeColor,
-        appThemeColor,
         initThemeColor,
-        appThemeDark,
         toggleThemeDark,
         initThemeDark,
+        dbUtilsStore
     }
 })
 

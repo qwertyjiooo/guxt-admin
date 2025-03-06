@@ -1,14 +1,14 @@
 <template>
   <div class="color-picker" title="主题颜色">
-    <el-color-picker size="default" @change="changeThemeColor" v-model="appStore.appThemeColor" show-alpha
+    <el-color-picker size="default" @change="changeThemeColor" v-model="appStore.global.appThemeColor" show-alpha
       :predefine="predefineColors" />
-    <div v-if="isLogoVisible" class="pl-4 text-gray-500">主题颜色</div>
+    <!-- <div v-if="isLogoVisible" class="pl-4 text-gray-500">主题颜色</div> -->
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { useSidebarLogoVisibility } from "@/hooks/useSidebarLogoVisibility";
+// import { useSidebarLogoVisibility } from "@/hooks/useSidebarLogoVisibility";
 import { useAppSettingStore } from "@/stores/AppSetting.js";
 const appStore = useAppSettingStore();
 const predefineColors = ref([
@@ -32,7 +32,7 @@ const changeThemeColor = (val) => {
   appStore.toggleThemeColor(val);
 };
 // 根据store的状态判断是否显示文字
-const { isLogoVisible } = useSidebarLogoVisibility();
+// const { isLogoVisible } = useSidebarLogoVisibility();
 </script>
 
 <style lang="scss" scoped>
@@ -44,8 +44,8 @@ const { isLogoVisible } = useSidebarLogoVisibility();
   overflow: hidden;
   // 文字不换行
   white-space: nowrap;
-  background-color: var(--menu-background);
-  border-right: var(--main-border-color) 1px solid;
+  // background-color: var(--menu-background);
+  // border-right: var(--main-border-color) 1px solid;
   box-sizing: border-box;
 }
 </style>
