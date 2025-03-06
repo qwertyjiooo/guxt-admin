@@ -1,9 +1,9 @@
 <template>
     <div class="main-container flex_column">
-        <router-view v-slot="{ Component,route }">
+        <router-view v-slot="{ Component, route }">
             <transition name="fade-transform" mode="out-in">
                 <keep-alive :include="keepAliveStore.keepAliveList">
-                    <component :is="Component" :key="route.fullPath"></component>
+                    <component :is="Component" :key="route.fullPath" v-if="tabsStore.refresh"></component>
                 </keep-alive>
             </transition>
         </router-view>
@@ -12,7 +12,9 @@
 
 <script setup>
 import { useKeepAliveStore } from '@/stores/keepAlive';
+import { useTabsStore } from '@/stores/tabs';
 const keepAliveStore = useKeepAliveStore();
+const tabsStore = useTabsStore();
 
 </script>
 

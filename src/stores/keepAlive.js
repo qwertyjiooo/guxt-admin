@@ -11,14 +11,16 @@ export const useKeepAliveStore = defineStore('KeepAlive', () => {
     const removeKeepAlive = (name) => {
         const index = keepAliveList.value.indexOf(name);
         if (index > -1) keepAliveList.value.splice(index, 1);
+        console.log(keepAliveList.value);
+        
     }
     // 设置需要缓存的组件
     const setKeepAlive = (names) => keepAliveList.value = names;
 
-    return {
+   return {
         keepAliveList,
         addKeepAlive,
         removeKeepAlive,
-        setKeepAlive
+        setKeepAlive,
     }
 })

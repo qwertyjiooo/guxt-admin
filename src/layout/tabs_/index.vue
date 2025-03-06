@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, nextTick } from 'vue';
 import Sortable from "sortablejs";
 import { useTabsStore } from '@/stores/tabs.js';
 import { useKeepAliveStore } from '@/stores/keepAlive';
@@ -60,9 +60,14 @@ const initTabs = () => {
     tabsStore.initTabs()
 }
 
-// 刷新当前页面操作
+// 刷新当前的页面
 const refresh = () => {
-    window.location.reload();
+    keepAliveStore.removeKeepAlive(route.name)
+    tabsStore.setRefresh(false)
+    nextTick(() => {
+        keepAliveStore.addKeepAlive(route.name)
+        tabsStore.setRefresh(true)
+    })
 }
 // 全屏操作
 const fullScreen = () => {

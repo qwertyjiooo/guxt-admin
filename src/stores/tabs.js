@@ -9,6 +9,8 @@ export const useTabsStore = defineStore('tabs', () => {
     const rootList = ref([]); // 初始化后的固定路由列表
     const router = useRouter(); // 路由实例
     const keepAliveStore = useKeepAliveStore(); // 缓存实例
+    const refresh = ref(true); // 存储是否需要刷新
+
     // 初始化标签页
     const initTabs = () => {
         const flatRoutes = (item) => { // 扁平化路由
@@ -97,7 +99,11 @@ export const useTabsStore = defineStore('tabs', () => {
         dbUtils.set('tabsMenuList', tabsMenuList.value);
     }
 
+    // 设置刷新状态
+    const setRefresh = (status) => refresh.value = status;
+
     return {
+        refresh,
         tabsMenuList,
         initTabs,
         addTabs,
@@ -107,6 +113,7 @@ export const useTabsStore = defineStore('tabs', () => {
         removeAllTabs,
         removeOtherTabs,
         closeMultipleTab,
-        dragSort
+        dragSort,
+        setRefresh
     }
 })
