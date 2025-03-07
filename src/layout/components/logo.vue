@@ -38,7 +38,7 @@ const { isLogoVisible } = useSidebarLogoVisibility();
 .logo_is_hidden { // aside 占据一列时
   padding: 0 10px 0 17px; 
 }
-.logo_hidden { // header 占据一行时
-  width: var(--aside_width);
-}
+// .logo_hidden { // header 占据一行时
+//   width: var(--aside_width);
+// }
 </style>

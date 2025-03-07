@@ -1,6 +1,6 @@
 <template>
     <el-header class="header">
-        <Logo></Logo>
+        <!-- <Logo></Logo> -->
         <!-- 折叠按钮 -->
         <Fold></Fold>
         <!-- 面包屑 -->
