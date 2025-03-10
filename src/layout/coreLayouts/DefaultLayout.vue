@@ -16,11 +16,11 @@
     </div>
 </template>
 <script setup>
-import Aside from '../aside/index.vue'
+import Aside from '../Aside/index.vue'
 import Header from '../header/index.vue'
-import Main from '../main/index.vue'
-import Footer from '../footer/index.vue'
-import Tabs_ from '../tabs_/index.vue'
+import Main from '../Main/index.vue'
+import Footer from '../Footer/index.vue'
+import Tabs_ from '../Tabs_/index.vue'
 </script>
 <style lang="less" scoped>
 .common-layout {
