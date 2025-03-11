@@ -6,9 +6,7 @@
                 <Header />
             </el-header>
             <el-container>
-                <el-aside width="auto">
-                    <Aside style="height: calc(100vh - var(--header_height))"/>
-                </el-aside>
+                <el-aside width="auto"><Aside style="height: calc(100vh - var(--header_height))"/></el-aside>
                 <el-container>
                     <Tabs_ />
                     <el-main class="main-content"><Main /></el-main>

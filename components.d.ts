@@ -56,7 +56,6 @@ declare module 'vue' {
     Input: typeof import('./src/views/LoginPage/Account/components/Input.vue')['default']
     Logo: typeof import('./src/layout/components/Logo/index.vue')['default']
     Main: typeof import('./src/layout/components/Main/index.vue')['default']
-    Menu: typeof import('./src/layout/header/components/Menu.vue')['default']
     ProfilePicture: typeof import('./src/layout/components/Header/components/profilePicture.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -64,6 +63,7 @@ declare module 'vue' {
     Setup: typeof import('./src/layout/components/Header/components/setup.vue')['default']
     Switch: typeof import('./src/components/Switch/index.vue')['default']
     Tabs_: typeof import('./src/layout/components/Tabs_/index.vue')['default']
+    ThemeDrawer: typeof import('./src/layout/components/ThemeDrawer/index.vue')['default']
     UseProTable: typeof import('./src/components/useProTable/index.vue')['default']
   }
 }

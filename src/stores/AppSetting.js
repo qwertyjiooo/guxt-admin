@@ -6,6 +6,8 @@ import setting from '@/setting.js'
 export const useAppSettingStore = defineStore('appSetting', () => {
     // global 数据
     const global = ref(JSON.parse(dbUtils.get('global')) || setting.global);
+    // 将 设置按钮的弹窗 单独展示
+    const appSettingPopup = ref(false) // 是否展示 设置 弹窗
     // 主题色操作
     const themeColor = (newColor) => {
         const rootStyle = document.documentElement.style;
@@ -52,9 +54,17 @@ export const useAppSettingStore = defineStore('appSetting', () => {
     const dbUtilsStore = () => {
         dbUtils.set('global', global.value);
     };
-
+    // 重置操作
+    const reset = () => {
+        global.value = setting.global;
+        dbUtilsStore();
+        initThemeColor();
+        initThemeDark();
+    }
     return {
         global,
+        appSettingPopup,
+        reset,
         toggleThemeColor,
         initThemeColor,
         toggleThemeDark,

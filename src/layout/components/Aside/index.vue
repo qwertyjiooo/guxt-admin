@@ -1,39 +1,38 @@
 <template>
     <!-- <div class="no_select" -->
-        <!-- style="height: 100%;"> -->
-        <el-menu :default-active="currentRoute" class="menu_container no_select"
-            :collapse="appSidebarStore.global.appSidebarStatus"
-            :mode="horizontal"
-            :unique-opened="appSidebarStore.global.appSettingAccordion">
-            <template v-for="(item, index) in asideRoutesList" :key="index">
-                <!-- 二级路由的显示 -->
-                <el-sub-menu :index="item.path" v-if="item.children && item.children.length > 0"
-                    :class="{ 'sub-menu-item-active': isActive(item) }">
-                    <template #title>
-                        <el-icon>
-                            <location />
-                        </el-icon>
-                        <span>{{ item.meta.title }}</span>
-                    </template>
-                    <el-menu-item v-for="(child, i) in item.children" :key="i" :index="child.path"
-                        @click="handleClick(child.path)"
-                        :class="{ 'menu-item-active': currentRoute === child.path, 'menu_item': true }">
-                        <el-icon>
-                            <location />
-                        </el-icon>
-                        {{ child.meta.title }}
-                    </el-menu-item>
-                </el-sub-menu>
-                <!-- 一级路由的显示 -->
-                <el-menu-item v-else :index="item.path" @click="handleClick(item.path)"
-                    :class="{ 'menu-item-active': currentRoute === item.path && appSidebarStore.global.appThemeStyle != 'header'}">
+    <!-- style="height: 100%;"> -->
+    <el-menu :default-active="currentRoute" class="menu_container no_select"
+        :collapse="appSidebarStore.global.appThemeStyle != 'header' && appSidebarStore.global.appSidebarStatus"
+        :mode="horizontal" :unique-opened="appSidebarStore.global.appSettingAccordion">
+        <template v-for="(item, index) in asideRoutesList" :key="index">
+            <!-- 二级路由的显示 -->
+            <el-sub-menu :index="item.path" v-if="item.children && item.children.length > 0"
+                :class="{ 'sub-menu-item-active': isActive(item) }">
+                <template #title>
                     <el-icon>
                         <location />
                     </el-icon>
-                    <template #title>{{ item.meta.title }}</template>
+                    <span>{{ item.meta.title }}</span>
+                </template>
+                <el-menu-item v-for="(child, i) in item.children" :key="i" :index="child.path"
+                    @click="handleClick(child.path)"
+                    :class="{ 'menu-item-active': currentRoute === child.path, 'menu_item': true }">
+                    <el-icon>
+                        <location />
+                    </el-icon>
+                    {{ child.meta.title }}
                 </el-menu-item>
-            </template>
-        </el-menu>
+            </el-sub-menu>
+            <!-- 一级路由的显示 -->
+            <el-menu-item v-else :index="item.path" @click="handleClick(item.path)"
+                :class="{ 'menu-item-active': currentRoute === item.path && appSidebarStore.global.appThemeStyle != 'header' }">
+                <el-icon>
+                    <location />
+                </el-icon>
+                <template #title>{{ item.meta.title }}</template>
+            </el-menu-item>
+        </template>
+    </el-menu>
     <!-- </div> -->
 </template>
 

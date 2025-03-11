@@ -48,7 +48,7 @@ const submitForm = (rules) => {
     const timer = setTimeout(() => {
         // 设置cookie
         setCookie('token', ruleForm.account, 7)
-        ElMessage.success('登录成功')
+        // ElMessage.success('登录成功')
         loadingLogin.value = false
         // 跳转
         router.push('/home')
