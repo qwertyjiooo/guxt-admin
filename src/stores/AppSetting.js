@@ -56,7 +56,7 @@ export const useAppSettingStore = defineStore('appSetting', () => {
     };
     // 重置操作
     const reset = () => {
-        global.value = setting.global;
+        global.value = { ...setting.global }; // 使用浅拷贝，防止引用类型，以至于指针地址相同
         dbUtilsStore();
         initThemeColor();
         initThemeDark();
