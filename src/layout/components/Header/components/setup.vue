@@ -30,6 +30,42 @@
         </span>
         <el-switch size="default" v-model="pickerSwitch" :active-action-icon="Sunny" :inactive-action-icon="Moon" />
       </div>
+      <div class="container">
+        <div :class="['shadow_bg_3 topic', useAppStore.global.appThemeStyle == 'default' ? 'topic_active' : '']" @click="setLayout('default')">
+          <span class="span-1"></span>
+          <span class="span-2">
+            <span class="span-3"></span>
+            <span class="span-4"></span>
+          </span>
+          <el-icon class="icon" size="20" v-if="useAppStore.global.appThemeStyle == 'default'">
+            <CircleCheckFilled />
+          </el-icon>
+        </div>
+        <div :class="['shadow_bg_3 topic', useAppStore.global.appThemeStyle == 'sidebar' ? 'topic_active' : '']" @click="setLayout('sidebar')" style="flex-direction: column;">
+          <span class="span-1"></span>
+          <span class="span-2" style="flex-direction: row;">
+            <span class="span-3"></span>
+            <span class="span-4"></span>
+          </span>
+          <el-icon class="icon" size="20" v-if="useAppStore.global.appThemeStyle == 'sidebar'">
+            <CircleCheckFilled />
+          </el-icon>
+        </div>
+      </div>
+
+      <div class="container">
+        <div :class="['shadow_bg_3 topic', useAppStore.global.appThemeStyle == 'header' ? 'topic_active' : '']" @click="setLayout('header')" style="width: calc(50% - 5px);flex: none;">
+          <!-- <span class="span-1"></span> -->
+          <span class="span-2">
+            <span class="span-3"></span>
+            <span class="span-4"></span>
+          </span>
+          <el-icon class="icon" size="20" v-if="useAppStore.global.appThemeStyle == 'header'">
+            <CircleCheckFilled />
+          </el-icon>
+        </div>
+      </div>
+
       <el-divider>主题颜色</el-divider>
       <div class="theme-color-list flex_center_x">
         <span v-for="(item, index) in predefineColors" :key="index" :title="item" @click="changeThemeColor(item)"
@@ -57,26 +93,6 @@
         <span>水印</span>
         <el-switch size="default" v-model="useAppStore.global.appWatermark" @change="useAppStore.dbUtilsStore" />
       </div>
-      <!-- <div class="flex_center_between">
-        <span>面包屑</span>
-        <el-switch size="default" v-model="pickerSwitch" />
-      </div>
-      <div class="flex_center_between">
-        <span>面包屑图标</span>
-        <el-switch size="default" v-model="pickerSwitch" />
-      </div>
-      <div class="flex_center_between">
-        <span>标签栏</span>
-        <el-switch size="default" v-model="pickerSwitch" />
-      </div>
-      <div class="flex_center_between">
-        <span>标签栏图标</span>
-        <el-switch size="default" v-model="pickerSwitch" />
-      </div>
-      <div class="flex_center_between">
-        <span>页脚</span>
-        <el-switch size="default" v-model="pickerSwitch" />
-      </div> -->
       <el-button class="mt-2" @click="debouncedResetSetting">
         <el-icon>
           <Refresh />
@@ -91,8 +107,8 @@
 import { ref } from "vue";
 import { useAppSettingStore } from "@/stores/AppSetting.js";
 import Switch from "@/components/Switch/index.vue"; // 黑夜 / 白天
-import colorPicker from '@/layout/components/colorPicker.vue'
-import { Refresh, Setting, QuestionFilled, Moon, Sunny } from "@element-plus/icons-vue";
+import colorPicker from '@/layout/components/ColorPicker/index.vue'
+import { Refresh, Setting, QuestionFilled, Moon, Sunny, CircleCheckFilled } from "@element-plus/icons-vue";
 import { useDebounceFn } from "@vueuse/core";
 const drawer = ref(false);
 const pickerSwitch = ref(true)
@@ -125,6 +141,12 @@ const debouncedResetSetting = useDebounceFn(() => {
   useAppStore.toggleThemeDark(true);
 }, 500);
 
+const setLayout = (type) => {
+  if (type == useAppStore.global.appThemeStyle) return;
+  useAppStore.global.appThemeStyle = type;
+  useAppStore.dbUtilsStore();
+}
+
 </script>
 
 <style lang="less" scoped>
@@ -152,5 +174,62 @@ const debouncedResetSetting = useDebounceFn(() => {
   div {
     margin-bottom: 10px;
   }
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+
+  .el-icon {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: var(--el-menu-active-color);
+  }
+}
+
+.topic {
+  display: flex;
+  gap: 10px;
+  height: 100px;
+  padding: 8px;
+  flex: 1;
+  // border: 2px solid var(--el-menu-active-color);
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+}
+.topic_active {
+  border: 2px solid var(--el-menu-active-color);
+  box-sizing: border-box;
+}
+
+.topic>.span-2 {
+  flex: 4;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.span-1 {
+  height: 100%;
+  background-color: var(--el-menu-active-color);
+  flex: 1;
+  border-radius: 4px;
+}
+
+.span-3 {
+  background-color: var(--el-color-primary-light-2);
+  flex: 1;
+  border-radius: 4px;
+}
+
+.span-4 {
+  background-color: var(--el-color-primary-light-8);
+  flex: 4;
+  border-radius: 4px;
+  border: 2px dashed var(--el-menu-active-color);
 }
 </style>

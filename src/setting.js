@@ -30,6 +30,8 @@ export default {
         appSidebarStatus: false, // 是否显示侧边栏
         appSettingAccordion: true, // 菜单手风琴
         appWatermark: false, // 是否展示水印
+        // 主题样式 头部菜单 侧边栏 logo在头部
+        appThemeStyle: 'default', // default, sidebar, header
     },
     // 页脚备案信息
     reference: {

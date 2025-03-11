@@ -22,6 +22,6 @@ const tabsStore = useTabsStore();
 .main-container {
     position: relative;
     width: 100%;
-    height: calc(100vh - 20px - var(--header_height ) - var(--footer_height) - var(--tabs_height));
+    height: calc(100vh - 20px - var(--header_height) - var(--footer_height) - var(--tabs_height));
 }
 </style>
