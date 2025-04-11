@@ -2,7 +2,8 @@ import axios from "axios";
 import router from "../router";
 import { getCookie } from "@/utils/util.cookie";
 
-const baseURL = import.meta.env.VITE_API_URL;
+// const baseURL = import.meta.env.VITE_API_URL;
+const baseURL = '/api' // 本地测试的代理
 const server = axios.create({
     baseURL: baseURL,
     timeout: 5000
@@ -12,8 +13,9 @@ const server = axios.create({
 server.interceptors.request.use(
     config => {
         // 判断 token 是否存在
-        const token = getCookie('token');
-        if (token) config.headers['token'] = token;
+        // const token = getCookie('token');
+        // if (token) config.headers['token'] = token;
+        // config.headers['Authorization'] = token;
         return config;
     },
     error => {
@@ -23,19 +25,19 @@ server.interceptors.request.use(
 // 响应拦截器
 server.interceptors.response.use(
     response => {
-        const { data } = response;
-        if (data.code != 200) return Promise.reject(data);
+        const { data, status } = response;
+        if (status != 200) return Promise.reject(data);
         if (data.response == 'ok') return data;
         switch (data.code) {
-            case '0': // 成功
+            case 0: // 成功
                 return data;
-            case '401': // 未登录 | token 失效
+            case 4012: // 未登录 | token 失效
                 router.push('/login');
                 break;
             default: // 其他错误
                 return Promise.reject(data);
         }
-        return data;
+        // return data;
     },
     error => {
         return Promise.reject(error);

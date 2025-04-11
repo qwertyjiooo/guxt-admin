@@ -76,13 +76,13 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 4000,
     open: true,
-    // proxy: {
-    //   '/api': {
-    //     target: env.VITE_API_URL,
-    //     changeOrigin: true,
-    //     rewrite: (path) => path.replace(/^\/api/, '')
-    //   }
-    // },
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8000/Guxt',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    },
   },
   // optimizeDeps 用于配置 Vite 在构建时需要优化的依赖库，确保这些库会被提前处理，从而提高开发构建和启动的速度。
   optimizeDeps: {

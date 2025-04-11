@@ -1,4 +1,4 @@
-import loginApi from './path/login'
+import { loginApi } from './path/login.js'
 
 
 export const api = {

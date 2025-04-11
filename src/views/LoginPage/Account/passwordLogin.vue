@@ -2,8 +2,8 @@
     <div style="width: 100%;">
         <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" class="demo-ruleForm">
             <!-- 账号 -->
-            <el-form-item label="" prop="account">
-                <el-input size="large" v-model="ruleForm.account" placeholder="请输入账号">
+            <el-form-item label="" prop="username">
+                <el-input size="large" v-model="ruleForm.username" placeholder="请输入账号">
                     <template #prefix>
                         <span class="prefix">账号</span>
                     </template>
@@ -34,27 +34,29 @@ import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { setCookie } from '@/utils/util.cookie'
+import { api } from '@/api'
 const router = useRouter()
 const ruleFormRef = ref('')
 const ruleForm = reactive({
-    account: 'admin', // 账号
-    password: '123456', // 密码
+    username: '', // 账号
+    password: '', // 密码
 })
 // 登录 操作
 const loadingLogin = ref(false)
 const submitForm = (rules) => {
     loadingLogin.value = true
-    // 定时器
-    const timer = setTimeout(() => {
-        // 设置cookie
-        setCookie('token', ruleForm.account, 7)
-        // ElMessage.success('登录成功')
-        loadingLogin.value = false
-        // 跳转
-        router.push('/home')
-        // 清除定时器
-        clearTimeout(timer)
-    }, 1000)
+    api.login(ruleForm)
+        .then(res => { 
+            // 将token 存入cookie
+            setCookie('token', res.data.token, 7)
+            // 跳转
+            router.push('/home')
+            loadingLogin.value = false
+        })
+        .catch(err => {
+            loadingLogin.value = false
+            ElMessage.error(err.error)
+        })
 }
 // 注册 操作
 const resetForm = (rules) => {

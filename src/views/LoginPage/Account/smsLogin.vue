@@ -41,8 +41,8 @@ import { ElMessage } from 'element-plus'
  */
 const ruleFormRef = ref('')
 const ruleForm = reactive({
-    phone: '15938650343', // 手机号
-    code: '123456', // 验证码
+    phone: '', // 手机号
+    code: '', // 验证码
 })
 // 登录 操作
 const submitForm = (rules) => {
