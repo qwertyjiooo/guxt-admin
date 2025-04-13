@@ -1,5 +1,5 @@
 <template>
-    <el-drawer class="drawer_el" v-model="useAppStore.appSettingPopup" size="15%" title="I am the title"
+    <el-drawer class="drawer_el" v-model="useAppStore.appSettingPopup" size="300px" title="I am the title"
         :with-header="false">
         <div class="flex_center">布局设置</div>
         <el-divider>布局样式</el-divider>
@@ -125,8 +125,6 @@ const predefineColors = ref([
     "rgba(199, 21, 133, 1)",
     "rgba(255, 69, 0, 0.68)",
     "rgb(255, 120, 0)",
-    // "hsv(51, 100, 98)",
-    // "hsva(120, 40, 94, 0.5)",
     "hsl(181, 100%, 37%)",
     "hsla(209, 100%, 56%, 0.73)",
     "#c7158577",

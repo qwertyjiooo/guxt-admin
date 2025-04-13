@@ -3,7 +3,7 @@
         <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" class="demo-ruleForm">
             <!-- 账号 -->
             <el-form-item label="" prop="username">
-                <el-input size="large" v-model="ruleForm.username" placeholder="请输入账号">
+                <el-input @keydown.enter="submitForm(ruleFormRef)" size="large" v-model="ruleForm.username" placeholder="请输入账号">
                     <template #prefix>
                         <span class="prefix">账号</span>
                     </template>
@@ -11,7 +11,7 @@
             </el-form-item>
             <!-- 密码 -->
             <el-form-item label="" prop="password">
-                <el-input size="large" v-model="ruleForm.password" type="password" placeholder="请输入密码" show-password>
+                <el-input @keydown.enter="submitForm(ruleFormRef)" size="large" v-model="ruleForm.password" type="password" placeholder="请输入密码" show-password>
                     <template #prefix>
                         <span class="prefix">密码</span>
                     </template>
