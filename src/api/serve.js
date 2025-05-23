@@ -13,9 +13,9 @@ const server = axios.create({
 server.interceptors.request.use(
     config => {
         // 判断 token 是否存在
-        // const token = getCookie('token');
-        // if (token) config.headers['token'] = token;
-        // config.headers['Authorization'] = token;
+        const token = getCookie('token');
+        if (token) config.headers['token'] = token;
+        config.headers['Authorization'] = token;
         return config;
     },
     error => {
