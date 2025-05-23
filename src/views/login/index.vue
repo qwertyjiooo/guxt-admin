@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="account">
     <div
         style="
         display: flex;
@@ -20,7 +20,7 @@
           :inactive-action-icon="Moon"
       />
     </div>
-    <div class="login-title">
+    <div class="account-title">
       <div style="flex: 7">
         <!-- 扫码登录 -->
         <Scan></Scan>
@@ -52,11 +52,11 @@ const changeThemeType = (val) => {
 </script>
 
 <style lang="less" scoped>
-.login {
+.account {
   width: 100vw;
   height: 100vh;
   position: relative;
-  background: url("@/assets/svg/login-bq.svg") no-repeat center center;
+  background: url("@/assets/svg/account-bq.svg") no-repeat center center;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -66,7 +66,7 @@ const changeThemeType = (val) => {
   overflow: auto;
   transition: background-image 0.5s ease;
 
-  .login-title {
+  .account-title {
     background-color: var(--menu-background);
     width: 750px;
     // height: 500px;
@@ -82,7 +82,7 @@ const changeThemeType = (val) => {
   }
 }
 
-.dark .login {
+.dark .account {
   background-image: none;
   //   background-size: cover;
   //   background-position: center;

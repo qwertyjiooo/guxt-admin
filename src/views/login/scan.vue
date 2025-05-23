@@ -18,7 +18,7 @@
                 <div style="font-size: 12px; color: #373A40; margin-top: 12px;">二维码已过期，请刷新</div>
             </div>
         </div>
-        <a class="login-btn" href="http://www.gezhipro.com/home">下载编辑后台APP</a>
+        <a class="account-btn" href="http://www.gezhipro.com/home">下载编辑后台APP</a>
     </div>
 </template>
 
@@ -84,7 +84,7 @@
         }
     }
 
-    .login-btn {
+    .account-btn {
         margin-top: 24px;
         border: 1px solid #ccc;
         padding: 8px 8px;

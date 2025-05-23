@@ -55,7 +55,8 @@ const submitForm = (rules) => {
         })
         .catch(err => {
             loadingLogin.value = false
-            ElMessage.error(err.error)
+            console.log(err)
+            ElMessage.error(err.message)
         })
 }
 // 注册 操作

@@ -1,10 +1,10 @@
 <template>
     <!-- 登录其他方式 -->
     <div class="">
-        <div class="login-other">
-            <div class="login-other-item line"></div>
-            <div class="login-other-item">其他登录方式</div>
-            <div class="login-other-item line"></div>
+        <div class="account-other">
+            <div class="account-other-item line"></div>
+            <div class="account-other-item">其他登录方式</div>
+            <div class="account-other-item line"></div>
         </div>
         <div class="textBar">
         <div class="textBar-item" data-tip="微信登录" @click="ElMessage.info('功能开发中...')">
@@ -30,12 +30,12 @@ import { ElMessage } from 'element-plus';
 </script>
 
 <style lang="less" scoped>
-.login-other {
+.account-other {
     display: flex;
     align-items: center;
     padding: 10px 20px;
 
-    .login-other-item {
+    .account-other-item {
         flex: 1;
         display: flex;
         justify-content: center;
