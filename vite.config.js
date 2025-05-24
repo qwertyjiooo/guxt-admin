@@ -42,11 +42,10 @@ export default defineConfig({
         })
       ], // ElementPlus按需加载
     }),
-    // 自动导入图标
-    Icons({
+    Icons({ // 自动导入图标
       autoInstall: true,
     }),
-    vueSetupExtend()
+    vueSetupExtend() // 配置 vue 文件中 script 标签的 setup 属性
   ],
   // 配置别名
   resolve: {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import router from "../router";
-import { getCookie } from "@/utils/util.cookie";
+import {getCookie} from "@/utils/util.cookie";
 
 // const baseURL = import.meta.env.VITE_API_URL;
 const baseURL = '/api' // 本地测试的代理
@@ -26,13 +26,15 @@ server.interceptors.request.use(
 server.interceptors.response.use(
     response => {
         const { data, status } = response;
-        if (status != 200) return Promise.reject(data);
-        if (data.response == 'ok') return data;
+        if (status !== 200) return Promise.reject(data);
+        if (data.response === 'ok') return data;
         switch (data.code) {
             case 0: // 成功
                 return data;
             case 4012: // 未登录 | token 失效
-                router.push('/login');
+                router.push('/login').then(r => {
+                    console.log('未登录');
+                });
                 break;
             default: // 其他错误
                 return Promise.reject(data);
@@ -46,8 +48,7 @@ server.interceptors.response.use(
 
 export const post = async (url, data, headers) => {
     try {
-        const res = await server.post(url, data, { headers: headers });
-        return res;
+        return await server.post(url, data, {headers: headers});
     } catch (error) {
         return Promise.reject(error);
     }
@@ -55,8 +56,7 @@ export const post = async (url, data, headers) => {
 
 export const get = async (url, params, headers) => {
     try {
-        const res = await server.get(url, { params, headers: headers });
-        return res;
+        return await server.get(url, {params, headers: headers});
     } catch (error) {
         return Promise.reject(error);
     }
