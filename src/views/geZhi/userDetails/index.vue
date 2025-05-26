@@ -7,7 +7,7 @@
       <div class="flex_center_y Search_item"><span>性别：</span><el-input style="width: 100%" placeholder="请输入内容" v-model="fromData.sex"></el-input></div> -->
       <el-form :inline="true" :model="fromData" class="flex_center_y">
         <el-form-item label="用户信息">
-          <el-input style="width: 240px;" v-model="fromData.name" placeholder="请输入内容" clearable />
+          <el-input style="width: 240px;" v-model="fromData.name" placeholder="请输入用户姓名" clearable />
         </el-form-item>
         <el-form-item label="跟进人">
           <el-select v-model="fromData.followPerson" style="width: 120px;" placeholder="Activity zone" clearable>
