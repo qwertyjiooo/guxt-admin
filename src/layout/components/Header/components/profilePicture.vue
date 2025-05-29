@@ -2,7 +2,7 @@
     <div class="h-full flex items-center justify-center">
         <el-dropdown trigger="click">
             <div class="flex items-center">
-                <span class="cursor-pointer pr-2 text-[16px]">书中枫叶</span>
+                <span class="cursor-pointer pr-2 text-[16px]">{{user.nickname}}</span>
                 <!-- <img class="wh-8 h-8 rounded-full" src="https://avatars.githubusercontent.com/u/12345678?v=4" alt=""> -->
             </div>
             <template #dropdown>
@@ -18,6 +18,7 @@
 <script setup>
 import { removeCookie } from '@/utils/util.cookie';
 import { useRouter } from 'vue-router';
+import {api} from '@/api/index.js'
 const router = useRouter();
 // 退出登录
 const logout = () => {
@@ -27,6 +28,13 @@ const logout = () => {
         clearTimeout(timer);
     }, 500);
 }
+
+const user = ref({})
+onMounted(() => {
+    api.userinfo().then(res => {
+       user.value= res.data
+    })
+})
 </script>
 
 <style lang="less" scoped></style>
