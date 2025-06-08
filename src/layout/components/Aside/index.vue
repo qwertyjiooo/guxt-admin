@@ -2,7 +2,7 @@
     <!-- <div class="no_select" -->
     <!-- style="height: 100%;"> -->
     <el-menu :default-active="currentRoute" class="menu_container no_select"
-        :collapse="appSidebarStore.global.appThemeStyle != 'header' && appSidebarStore.global.appSidebarStatus"
+        :collapse="appSidebarStore.global.appThemeStyle !== 'header' && appSidebarStore.global.appSidebarStatus"
         :mode="horizontal" :unique-opened="appSidebarStore.global.appSettingAccordion">
         <template v-for="(item, index) in asideRoutesList" :key="index">
             <!-- 二级路由的显示 -->
@@ -25,7 +25,7 @@
             </el-sub-menu>
             <!-- 一级路由的显示 -->
             <el-menu-item v-else :index="item.path" @click="handleClick(item.path)"
-                :class="{ 'menu-item-active': currentRoute === item.path && appSidebarStore.global.appThemeStyle != 'header' }">
+                :class="{ 'menu-item-active': currentRoute === item.path && appSidebarStore.global.appThemeStyle !== 'header' }">
                 <el-icon>
                     <location />
                 </el-icon>
