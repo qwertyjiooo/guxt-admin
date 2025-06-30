@@ -1,9 +1,9 @@
 <template>
     <div class="header">
         <!-- 折叠按钮 -->
-        <Fold v-if="useAppStore.global.appThemeStyle != 'header'"></Fold>
+        <Fold v-if="useAppStore.global.appThemeStyle !== 'header'"></Fold>
         <!-- 面包屑 -->
-        <Breadcrumb v-if="useAppStore.global.appThemeStyle != 'header'"></Breadcrumb>
+        <Breadcrumb v-if="useAppStore.global.appThemeStyle !== 'header'"></Breadcrumb>
         <div style="flex: 1;"></div>
         <!-- 搜索 -->
         <Search></Search>

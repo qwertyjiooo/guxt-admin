@@ -16,15 +16,15 @@
 </template>
 
 <script setup>
-import { removeCookie } from '@/utils/util.cookie';
+import utils from '@/utils/util.strotage.js';
 import { useRouter } from 'vue-router';
 import {api} from '@/api/index.js'
 const router = useRouter();
 // 退出登录
 const logout = () => {
     const timer = setTimeout(() => {
-        removeCookie('token');
-        router.push('/login');
+        utils.remove('token');
+        router.push('/account/login');
         clearTimeout(timer);
     }, 500);
 }

@@ -5,7 +5,7 @@ export default {
         version: '1.0.0',
         desc: '管理平台',
         // logo仅支持在线地址
-        logo: 'https://element-plus.org/images/element-plus-logo.svg',
+        logo: 'xxx',
     },
     // 主题配置
     theme: {

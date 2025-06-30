@@ -1,29 +1,29 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { getCookie } from '@/utils/util.cookie'
+import {createRouter, createWebHistory} from 'vue-router'
+import utils from '@/utils/util.strotage.js'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
 import routes from './routes'
+
 const router = createRouter({
     history: createWebHistory(),
     routes: routes
 })
 
 router.beforeEach((to, from, next) => {
-    NProgress.start()
-    const token = getCookie('token');
-    // 判断是否是去 login 页面
-    if (to.path === '/login') {
-        next()
+    NProgress.start();
+    const token = utils.get('token');
+    const parsedToken = token ? JSON.parse(token)?.token : null;
+    if (to.path === '/account/login') {
+        next();
     } else {
-        // 判断是否有 token
-        if (token) {
-            next()
+        if (parsedToken) {
+            next();
         } else {
-            next('/login')
+            next('/account/login');
         }
     }
-})
+});
 router.afterEach(() => {
     NProgress.done()
 })

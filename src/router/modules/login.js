@@ -1,13 +1,35 @@
+import LoginPage from '@/views/Account/index.vue'
+import Login from '@/views/Account/Login/index.vue'
+import Register from '@/views/Account/Register/index.vue'
 const loginRouter = [
     {
-        path: '/login',
+        path: '/account',
         name: 'LoginPage',
-        component: () => import('@/views/LoginPage/index.vue'),
+        component: LoginPage,
+        redirect: '/account/login',
         meta: {
             title: '登录',
-            isShow: false, // 是否显示在菜单栏
         }
-    }
+        ,
+        children: [
+            {
+                path: '/account/login',
+                name: 'Login',
+                component: Login,
+                meta: {
+                    title: '登录',
+                }
+            },
+            {
+                path: '/account/register',
+                name: 'Register',
+                component: Register,
+                meta: {
+                    title: '注册',
+                }
+            }
+        ]
+    },
 ]
 
 export default loginRouter

@@ -1,6 +1,6 @@
 import axios from "axios";
 import router from "../router";
-import {getCookie} from "@/utils/util.cookie";
+import utils from "@/utils/util.strotage.js";
 
 // const baseURL = import.meta.env.VITE_API_URL;
 const baseURL = '/api' // 本地测试的代理
@@ -12,10 +12,9 @@ const server = axios.create({
 // 请求拦截器
 server.interceptors.request.use(
     config => {
-        // 判断 token 是否存在
-        const token = getCookie('token');
-        if (token) config.headers['token'] = token;
-        config.headers['Authorization'] = token;
+        const token = utils.get('token');
+        const parsedToken = token ? JSON.parse(token)?.token : null;
+        if (parsedToken) config.headers['Authorization'] = parsedToken;
         return config;
     },
     error => {
@@ -25,7 +24,7 @@ server.interceptors.request.use(
 // 响应拦截器
 server.interceptors.response.use(
     response => {
-        const { data, status } = response;
+        const {data, status} = response;
         if (status !== 200) return Promise.reject(data);
         if (data.response === 'ok') return data;
         switch (data.code) {

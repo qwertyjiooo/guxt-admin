@@ -1,4 +1,4 @@
-import { post, get } from '../serve'
+import {post, get} from '../serve'
 
 const API = {
     // 登录
@@ -10,7 +10,7 @@ const API = {
 
 const login = data => post(API.login, data)
 const register = data => post(API.register, data)
-const userinfo = data => get(API.userinfo,  data)
+const userinfo = data => get(API.userinfo, data)
 
 export const loginApi = {
     login,
