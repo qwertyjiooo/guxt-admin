@@ -30,8 +30,8 @@ server.interceptors.response.use(
         switch (data.code) {
             case 0: // 成功
                 return data;
-            case 4012: // 未登录 | token 失效
-                router.push('/login').then(r => {
+            case 4014: // 未登录 | token 失效
+                router.push('/account/login').then(r => {
                     console.log('未登录');
                 });
                 break;
@@ -60,3 +60,12 @@ export const get = async (url, params, headers) => {
         return Promise.reject(error);
     }
 };
+
+// 修改
+export const put = async (url, data, headers) => {
+    try {
+        return await server.put(url, data, {headers: headers});
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}

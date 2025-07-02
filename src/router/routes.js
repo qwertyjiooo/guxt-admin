@@ -1,8 +1,8 @@
-import notFoundRouter from './modules/NotFound'
-import loginRouter from './modules/login'
-import homeRouter from './modules/home'
-import anyRoute from './modules/anyRoute'
-import aboutRouter from './modules/Test'
+import notFoundRouter from '@/router/modules/NotFound'
+import loginRouter from '@/router/modules/login'
+import homeRouter from '@/router/modules/home'
+import anyRoute from '@/router/modules/anyRoute'
+import caseRouter from "@/router/modules/case.js";
 
 const routes = [
     {
@@ -15,12 +15,13 @@ const routes = [
             isShow: true, // 是否显示在菜单栏
         },
         children: [
-            ...homeRouter,
+            ...homeRouter, // 首页
+            ...caseRouter, // 案例库
         ]
     },
-    ...loginRouter,
-    ...notFoundRouter,
-    ...anyRoute,
+    ...loginRouter, // 登录注册
+    ...notFoundRouter, // 404
+    ...anyRoute, // 匹配任意路由
 ]
 
 export default routes
