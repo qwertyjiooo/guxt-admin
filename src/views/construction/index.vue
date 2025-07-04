@@ -1,4 +1,5 @@
 <template>
+    <!--知识列表管理-->
     <div class="flex_column content content_box_shadow gap-6 py-6" v-loading="loading">
         <!-- 搜索和新增区域 -->
         <div class="flex gap-6">

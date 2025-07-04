@@ -3,6 +3,7 @@ import loginRouter from '@/router/modules/login'
 import homeRouter from '@/router/modules/home'
 import anyRoute from '@/router/modules/anyRoute'
 import caseRouter from "@/router/modules/case.js";
+import knowledgeRouter from "@/router/modules/knowledge.js";
 
 const routes = [
     {
@@ -17,6 +18,7 @@ const routes = [
         children: [
             ...homeRouter, // 首页
             ...caseRouter, // 案例库
+            ...knowledgeRouter, // 知识库
         ]
     },
     ...loginRouter, // 登录注册

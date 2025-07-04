@@ -69,4 +69,7 @@ declare module 'vue' {
     ThemeDrawer: typeof import('./src/layout/components/ThemeDrawer/index.vue')['default']
     UseProTable: typeof import('./src/components/useProTable/index.vue')['default']
   }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
+  }
 }

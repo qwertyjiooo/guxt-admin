@@ -1,5 +1,5 @@
 <template>
-    <div class="flex_center_between">
+    <div class="flex_center_between tabs-content">
         <el-tabs v-model="editableTabsValue" type="card" @tab-click="tabClick" class="demo_tabs" @tab-remove="removeTab">
             <el-tab-pane v-for="item in editableTabs" :key="item.path" :label="item.title" :name="item.path"
                 :closable="!item.close" :lazy='true'>
@@ -123,12 +123,15 @@ watch(
 
 
 <style scoped lang="scss">
+.tabs-content {
+    box-shadow: 0 1px 0 var(--main-border-color);
+}
 .dropdown{
     height: 100%;
     .dropdown_icon {
         height: 100%;
         padding:0 20px 0 20px;
-        border-left: 1px solid #dcdfe6;
+        border-left: 1px solid var(--main-border-color);
         transition: all 0.3s ease;
         &:hover{
             background-color: var(--el-menu-hover-bg-color);
@@ -142,12 +145,13 @@ watch(
     margin: 0 !important;
     padding: 0 10px !important;
     height: var(--tabs_height);
+    border-bottom: none;
     // 禁止文本选中
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    -o-user-select: none;
+    //-o-user-select: none;
 
     .el-tabs__nav {
         border: none !important;
