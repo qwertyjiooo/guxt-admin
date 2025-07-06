@@ -12,12 +12,11 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     NProgress.start();
-    const token = utils.get('token');
-    const parsedToken = token ? JSON.parse(token)?.token : null;
+    const token = utils.getToken();
     if (to.path === '/account/login') {
         next();
     } else {
-        if (parsedToken) {
+        if (token) {
             next();
         } else {
             next('/account/login');

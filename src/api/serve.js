@@ -12,9 +12,8 @@ const server = axios.create({
 // 请求拦截器
 server.interceptors.request.use(
     config => {
-        const token = utils.get('token');
-        const parsedToken = token ? JSON.parse(token)?.token : null;
-        if (parsedToken) config.headers['Authorization'] = parsedToken;
+        const token = utils.getToken();
+        if (token) config.headers['Authorization'] = token;
         return config;
     },
     error => {
@@ -31,14 +30,13 @@ server.interceptors.response.use(
             case 0: // 成功
                 return data;
             case 4014: // 未登录 | token 失效
-                router.push('/account/login').then(r => {
+                router.push('/account/login').then(() => {
                     console.log('未登录');
                 });
                 break;
             default: // 其他错误
                 return Promise.reject(data);
         }
-        // return data;
     },
     error => {
         return Promise.reject(error);
@@ -61,11 +59,19 @@ export const get = async (url, params, headers) => {
     }
 };
 
-// 修改
 export const put = async (url, data, headers) => {
     try {
         return await server.put(url, data, {headers: headers});
     } catch (error) {
         return Promise.reject(error);
     }
-}
+};
+
+export const del = async (url, params, headers) => {
+    try {
+        return await server.delete(url, {params, headers});
+    } catch (error) {
+        return Promise.reject(error);
+    }
+};
+

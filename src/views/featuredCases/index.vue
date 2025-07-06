@@ -19,14 +19,7 @@
                 <el-table-column prop="content" label="内容" align="center"/>
                 <el-table-column prop="image" label="图片" width="200" align="center">
                     <template #default="scope">
-                        <el-image
-                            :src="scope.row.image"
-                            style="width: 50px; height: 50px;"
-                            :preview-src-list="[scope.row.image]"
-                            :preview-zoom-rate="1.2"
-                            :preview-infinite="true"
-                            :preview-teleported="true"
-                            alt=""/>
+                        <ImageViewer :src="scope.row.image"/>
                     </template>
                 </el-table-column>
                 <el-table-column prop="area" label="面积" width="120" align="center"/>
@@ -56,7 +49,7 @@
             <el-pagination
                 background
                 layout="prev, pager, next"
-                :total="getTableList.count"
+                :total="getTableList.count || 0"
                 @current-change="fetchData"
                 v-model:current-page="form.page"
                 v-model:page-size="form.page_size"
@@ -72,19 +65,7 @@
                     <el-input v-model="formData.content" type="textarea" :rows="4" placeholder="请输入内容"/>
                 </el-form-item>
                 <el-form-item label="图片" prop="image">
-                    <el-upload
-                        action="/api/uploads/images/"
-                        list-type="picture-card"
-                        :on-success="handleUploadSuccess"
-                        :headers="{ Authorization: `Bearer ${userToken}` }"
-                        :show-file-list="false"
-                        name="images"
-                    >
-                        <img v-if="formData.image" :src="formData.image" class="w-full h-full" alt=""/>
-                        <el-icon v-else>
-                            <Plus/>
-                        </el-icon>
-                    </el-upload>
+                    <ImageUpload v-model="formData.image" @success="handleUploadSuccess"/>
                 </el-form-item>
                 <el-form-item label="面积" prop="area">
                     <el-input v-model="formData.area" placeholder="请输入面积"/>
@@ -106,22 +87,17 @@
 
 <script setup>
 import {ref, onMounted} from 'vue';
-import utils from '@/utils/util.strotage.js';
-import {Plus} from "@element-plus/icons-vue";
 import {api} from "@/api/index.js";
 import {ElMessage} from "element-plus";
-
-// 获取token
-const token = utils.get('token');
-const userToken = token ? JSON.parse(token)?.token : null;
+import {ImageUpload, ImageViewer} from '@/components/index.js'
 
 // 搜索表单
 const form = ref({
-    name: '',
+    name: undefined,
     is_featured: false,
     page: 1,
-    page_size: 4,
-});
+    page_size: 10,
+})
 const search = () => {
     form.value.page = 1;
     fetchData();
@@ -148,9 +124,7 @@ const rules = ref({
         {required: true, message: '请输入名称', trigger: 'blur'},
         {min: 2, max: 50, message: '名称长度在2到50个字符', trigger: 'blur'},
     ],
-    image: [
-        {required: true, message: '请上传图片', trigger: 'change'},
-    ],
+    image: [{required: true, message: '请上传图片', trigger: 'change'}],
     area: [
         {required: true, message: '请输入面积', trigger: 'blur'},
         {min: 2, max: 50, message: '面积长度在2到50个字符', trigger: 'blur'},
@@ -158,10 +132,10 @@ const rules = ref({
 });
 
 // 打开对话框
-const openDialog = (data = null) => {
-    if (data) {
-        formData.value = {...data};
-        isEditMode.value = true;
+const openDialog = (row = null) => {
+    isEditMode.value = !!row
+    if (row) {
+        Object.assign(formData.value, row)
     } else {
         formData.value = {
             id: undefined,
@@ -185,25 +159,21 @@ const loading = ref(false);
 const fetchData = () => {
     loading.value = true;
     api.caseList(form.value).then(res => {
-        loading.value = false;
         getTableList.value = res.data;
-    }).catch(err => {
         loading.value = false;
-        ElMessage.error(err.message);
     })
 };
 
 // 重置
 const init = () => {
-    form.value.name = '';
-    form.value.is_featured = false;
-    fetchData();
+    form.value = {
+        name: undefined,
+        is_featured: false,
+        page: 1,
+        page_size: 10
+    }
+    fetchData()
 }
-
-// 上传图片成功处理
-const handleUploadSuccess = (res) => {
-    formData.value.image = res.data.url;
-};
 
 // 提交表单
 const submitForm = () => {
@@ -212,25 +182,25 @@ const submitForm = () => {
         request.then(() => {
             ElMessage.success(isEditMode.value ? '修改成功' : '新增成功');
             fetchData();
+            dialogVisible.value = false;
         });
-        dialogVisible.value = false;
     }).catch(() => false);
 };
 
 // 删除数据
 const deleteData = async (data) => {
-    await api.deleteCase({id: data.id}).then(() => {
-        ElMessage.success('删除成功');
-        fetchData();
-    });
+    await api.deleteCase({id: data.id})
+    ElMessage.success('删除成功');
+    fetchData();
 };
+
+// 文件上传成功回调
+const handleUploadSuccess = (res) => {
+    formData.value.image = res.data.url
+}
 
 // 页面挂载时获取数据
 onMounted(() => {
     fetchData();
 });
 </script>
-
-<style scoped lang="scss">
-
-</style>

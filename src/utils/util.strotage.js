@@ -43,4 +43,10 @@ export default {
         }
         keysToRemove.forEach(key => localStorage.removeItem(key));
     },
+
+    // 获取单独获取token的方法
+    getToken() {
+        const token = this.get('token');
+        return token ? JSON.parse(token)?.token : null;
+    }
 }
